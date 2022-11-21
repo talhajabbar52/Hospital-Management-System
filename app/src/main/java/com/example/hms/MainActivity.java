@@ -39,6 +39,23 @@ Button btn_user,btn_admin;
             }
         });
 
+        btn_admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (edt_Username.getText().toString().equals("Talha")&&edt_pass.getText().toString().equals("abc"))
+                {
+                    Toast.makeText(MainActivity.this, "Login Successfully", Toast.LENGTH_LONG).show();
+                    Intent intent=new Intent(MainActivity.this,UserPanel.class);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_LONG).show();
+                    edt_Username.setError("Username Incorrect");
+                    edt_pass.setError("password Incorrect");
+                }
+            }
+        });
+
 
 
 
