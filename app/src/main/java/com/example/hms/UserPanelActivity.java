@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.hms.databinding.ActivityUserPanelBinding;
 
-public class UserPanel extends AppCompatActivity {
+public class UserPanelActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityUserPanelBinding binding;

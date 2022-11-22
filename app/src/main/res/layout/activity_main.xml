@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="2dp"
-    android:background="@drawable/baaa1753d1f97e731075784d33ab3d02"
+    android:background="@drawable/background"
     android:orientation="vertical"
     android:padding="10dp"
     android:gravity="center"
@@ -39,24 +39,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints="username"
-            android:textColorHint="@color/white"
             android:hint="@string/user_name"
             android:inputType="text"
+            android:minHeight="48dp"
             android:textColor="#000000"
 
 
-
-            />
+            android:textColorHint="@color/white" />
 
         <EditText
             android:id="@+id/edt_txt_user_pass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints="password"
-            android:textColorHint="@color/white"
             android:hint="@string/enter_password"
+            android:inputType="textPassword"
+            android:minHeight="48dp"
             android:textColor="#000000"
-            android:inputType="textPassword" />
+            android:textColorHint="@color/white"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -78,7 +79,10 @@
             android:layout_height="wrap_content"
             android:text="@string/user_login"
             tools:ignore="ButtonStyle"
-            android:backgroundTint="#BA3C55"/>
+            android:backgroundTint="#BA3C55"
+
+
+            />
 
         <!--login btn of admin-->
 
@@ -89,7 +93,9 @@
             android:text="@string/admin_login"
             android:layout_margin="5dp"
             android:backgroundTint="@color/purple_700"
-            tools:ignore="ButtonStyle" />
+            tools:ignore="ButtonStyle"
+
+            />
 
 
 
