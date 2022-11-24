@@ -104,13 +104,13 @@
                 android:minHeight="18dp"
                 android:textColor="#FFFFFF" />
 
-           <EditText
-               android:id="@+id/gender"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:hint="Gender"
-               android:inputType="text"
-               android:layout_marginLeft="30dp"/>
+            <EditText
+                android:id="@+id/gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Gender"
+                android:inputType="text"
+                android:layout_marginLeft="30dp"/>
         </LinearLayout>
 
         <EditText
