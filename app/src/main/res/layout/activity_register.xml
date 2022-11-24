@@ -4,178 +4,162 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity"
+    android:background="@drawable/regesterbg"
+    android:gravity="fill_horizontal"
     android:orientation="vertical"
-    android:gravity="fill_vertical"
-    android:background="@drawable/regesterbg">
+    tools:context=".RegisterActivity">
 
     <TextView
-        android:layout_marginTop="96dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="0dp"
         android:gravity="center"
-        android:text="Register Now"
-        android:textSize="20dp"
-        android:textStyle="bold|italic"
-        android:textColor="#F8F6F7"
         android:shadowColor="#B93C55"
-        android:shadowRadius="50"
         android:shadowDx="2"
         android:shadowDy="2"
-        android:layout_marginBottom="0dp"/>
+        android:shadowRadius="50"
+        android:text="@string/register_nowBanner"
+        android:textColor="#F8F6F7"
+        android:textSize="20sp"
+        android:textStyle="bold|italic" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_marginStart="20dp"
         android:gravity="fill_vertical"
-        android:layout_marginLeft="40dp">
+        android:orientation="vertical">
 
 
         <EditText
-            android:id="@+id/edt_txt_user"
-            android:layout_width="200dp"
+            android:id="@+id/txtUser"
+            android:layout_width="370dp"
             android:layout_height="wrap_content"
             android:autofillHints="username"
-            android:hint="Full Name"
-            android:inputType="text"
-            android:minHeight="18dp"
-            android:textColor="#FFFFFF" />
-        <EditText
-            android:id="@+id/edt_txt_user_fname"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:autofillHints="username"
-            android:hint="Fathers Name"
+            android:hint="@string/full_name"
             android:inputType="text"
             android:minHeight="18dp"
             android:textColor="#FFFFFF" />
 
+        <EditText
+            android:id="@+id/txtFName"
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="username"
+            android:hint="@string/fathers_name"
+            android:inputType="text"
+            android:minHeight="18dp"
+            android:textColor="#FFFFFF" />
+
 
         <EditText
-            android:id="@+id/edt_txt_Email"
-            android:layout_width="200dp"
+            android:id="@+id/txtEmail"
+            android:layout_width="370dp"
             android:layout_height="wrap_content"
             android:autofillHints="emailAddress"
-            android:hint="Email"
-            android:inputType="textPassword"
+            android:hint="@string/email"
+            android:inputType="text"
             android:minHeight="18dp"
             android:textColor="#FFFFFF"
-            />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            tools:ignore="TextFields" />
+
 
         <EditText
-            android:id="@+id/edt_txt_user_pass"
-            android:layout_width="130dp"
+            android:id="@+id/txtPass"
+            android:layout_width="370dp"
             android:layout_height="wrap_content"
             android:autofillHints="password"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
-            android:minHeight="18dp"
-            android:textColor="#FFFFFF"
-            />
-        <EditText
-            android:layout_marginLeft="50dp"
-            android:id="@+id/edt_txt_pass_confirm"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:autofillHints="password"
-            android:hint="Confirm password"
-            android:inputType="textPassword"
-            android:minHeight="18dp"
-            android:textColor="#FFFFFF"
-            />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-
-
-        <EditText
-            android:id="@+id/txt_user_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:autofillHints="username"
-            android:hint="Phone Number"
-            android:inputType="number"
             android:minHeight="18dp"
             android:textColor="#FFFFFF" />
-        <EditText
-            android:layout_marginLeft="30dp"
-            android:id="@+id/edt_txt_user_age"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:hint="Age"
-            android:inputType="number"
-            android:minHeight="18dp"
-            android:textColor="#FFFFFF"
-            />
 
 
         <EditText
-            android:layout_marginLeft="40dp"
-            android:id="@+id/edt_txt_user_Gender"
-            android:layout_width="100dp"
+            android:id="@+id/txtPhone"
+            android:layout_width="370dp"
             android:layout_height="wrap_content"
-            android:hint="Gender"
+            android:autofillHints="username"
+            android:hint="@string/phone_number"
+            android:inputType="phone"
             android:minHeight="18dp"
             android:textColor="#FFFFFF"
-            />
+            tools:ignore="TextFields" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+
+                android:id="@+id/txtAge"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:autofillHints="Age"
+                android:hint="@string/age"
+                android:inputType="number"
+                android:minHeight="18dp"
+                android:textColor="#FFFFFF" />
+
+           <EditText
+               android:id="@+id/gender"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:hint="Gender"
+               android:inputType="text"
+               android:layout_marginLeft="30dp"/>
         </LinearLayout>
 
         <EditText
-            android:id="@+id/edt_txt_user_address"
-            android:layout_width="340dp"
+            android:id="@+id/txtAddress"
+            android:layout_width="370dp"
             android:layout_height="wrap_content"
-            android:hint="Address"
-            android:inputType="number"
+            android:autofillHints="Address"
+            android:hint="@string/address"
+            android:inputType="text"
             android:minHeight="18dp"
-            android:textColor="#FFFFFF"
-            />
+            android:textColor="#FFFFFF" />
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:paddingTop="25dp">
-
-
-        <!--login btn of Register-->
-
-        <Button
-            android:layout_marginRight="20dp"
-            android:id="@+id/Register_btn"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Register now"
-            tools:ignore="ButtonStyle"
-            android:backgroundTint="#BA3C55"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="25dp">
 
-            />
-        <TextView
-            android:paddingTop="10dp"
-            android:layout_marginRight="30dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Have an Acount? Sign In"
-            android:textColor="@color/purple_700"/>
 
+            <!--login btn of Register-->
+
+            <Button
+
+                android:id="@+id/Register_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:backgroundTint="#BA3C55"
+                android:text="@string/register_now"
+                tools:ignore="ButtonStyle"
+
+                />
+
+            <TextView
+                android:id="@+id/signIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:paddingTop="10dp"
+                android:text="@string/have_an_account_sign_in"
+                android:textColor="@color/purple_700" />
+
+
+        </LinearLayout>
 
 
     </LinearLayout>
-
-
-
-    </LinearLayout>
-
 
 
 </LinearLayout>

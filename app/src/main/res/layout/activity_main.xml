@@ -102,6 +102,14 @@
 
 
     </LinearLayout>
+    <TextView
+        android:id="@+id/newAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/create_an_account"
+        android:layout_marginLeft="-70dp"
+        />
+
 
 
 </LinearLayout>
