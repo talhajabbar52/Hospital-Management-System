@@ -28,7 +28,7 @@ Button btn_user,btn_admin;
                 if (edt_Username.getText().toString().equals("Talha")&&edt_pass.getText().toString().equals("abc"))
                 {
                     Toast.makeText(MainActivity.this, "Login Successfully", Toast.LENGTH_LONG).show();
-                    Intent intent=new Intent(MainActivity.this,UserPanelActivity.class);
+                    Intent intent=new Intent(MainActivity.this,RegisterActivity.class);
                     startActivity(intent);
                 }
                 else {
