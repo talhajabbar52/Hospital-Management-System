@@ -19,31 +19,25 @@ import com.google.firebase.auth.FirebaseAuth;
 import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-EditText edt_Username,edt_pass;
-Button btn_user,btn_admin;
-TextView register;
+    EditText edt_Username,edt_pass;
+    Button btn_user,btn_admin;
+    TextView register;
     private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         edt_Username = findViewById(R.id.edt_txt_user);
         edt_pass = findViewById(R.id.edt_txt_user_pass);
         btn_user = findViewById(R.id.user_btn);
-        btn_admin=findViewById(R.id.admin_btn);
+        btn_admin = findViewById(R.id.admin_btn);
         register = (TextView) findViewById(R.id.newAccount);
         mAuth = FirebaseAuth.getInstance();
 
-
         btn_user.setOnClickListener(this);
-
         register.setOnClickListener(this);
-
-
-
-
-
 
 
     }

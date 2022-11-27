@@ -21,6 +21,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Locale;
 import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
@@ -46,7 +47,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         address = (EditText) findViewById(R.id.txtAddress);
         banner = (TextView) findViewById(R.id.signIn);
         register = (Button) findViewById(R.id.Register_btn);
-        gender=(EditText) findViewById(R.id.gender);
+        //gender=(EditText) findViewById(R.id.gender);
+        male = (RadioButton) findViewById(R.id.male);
+        female = (RadioButton) findViewById(R.id.female);
+
         //function implements
         
         banner.setOnClickListener(this);
@@ -55,7 +59,32 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
 
     }
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
 
+        // Check which radio button was clicked
+        switch (view.getId()) {
+            case R.id.male:
+                if (checked) {
+                    female.setChecked(false);
+                    userGender="Male";
+
+                    break;
+                } else {
+                    female.setError("Select Gender");
+                }
+
+            case R.id.female:
+                if (checked) {
+                    male.setChecked(false);
+                    userGender="female";
+                    break;
+                } else {
+                    female.setError("Select Gender");
+                }
+        }
+    }
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
@@ -72,13 +101,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private void registerUser() {
 
-        String Name,FName,Email,Pass,Phone,Address,Age, Gender;
+        String Name,FName,Email,Pass,Phone,Address,Age, usergender;
         Name = name.getText().toString().trim();
         FName = fName.getText().toString().trim();
         Email = email.getText().toString().trim();
         Age = age.getText().toString().trim();
         Pass = pass.getText().toString().trim();
-        Gender=gender.getText().toString().trim();
+        usergender=userGender.toString().trim();
         Address = address.getText().toString().trim();
         Phone = phone.getText().toString().trim();
 
@@ -118,17 +147,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             pass.requestFocus();
         }
 
-        if (Gender.isEmpty())
-        {
-            male.setError("Gender required");
-            male.requestFocus();
-
-        } if (Gender.isEmpty())
-        {
-            female.setError("Gender required");
-            female.requestFocus();
-
-        } if (Address.isEmpty())
+        if (Address.isEmpty())
         {
             address.setError("Address required");
             address.requestFocus();
@@ -153,7 +172,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
 
-                   UserRegistration user = new UserRegistration(Name,FName,Email,Phone,Age,Gender,Address);
+                   UserRegistration user = new UserRegistration(Name,FName,Email,Phone,Age,usergender,Address);
 
                     FirebaseDatabase.getInstance().getReference("User Registration").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
@@ -173,7 +192,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                 }
                 else {
-                    Toast.makeText(RegisterActivity.this, "Registration Failed abc", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RegisterActivity.this, "Registration Failed ", Toast.LENGTH_LONG).show();
 
                 }
             }

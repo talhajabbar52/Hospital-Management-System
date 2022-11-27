@@ -104,13 +104,29 @@
                 android:minHeight="18dp"
                 android:textColor="#FFFFFF" />
 
-            <EditText
-                android:id="@+id/gender"
+           <RadioButton
+               android:id="@+id/male"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:drawableLeft="@drawable/ic_male"
+               android:layout_marginLeft="25dp"
+               android:text="@string/male"
+               android:onClick="onRadioButtonClicked"
+
+               />
+            <RadioButton
+                android:id="@+id/female"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Gender"
-                android:inputType="text"
-                android:layout_marginLeft="30dp"/>
+                android:drawableLeft="@drawable/ic_femlae"
+                android:layout_marginLeft="25dp"
+                android:text="@string/female"
+                android:onClick="onRadioButtonClicked"
+
+                />
+
+
+
         </LinearLayout>
 
         <EditText
