@@ -39,7 +39,7 @@
             android:autofillHints="username"
             android:hint="@string/full_name"
             android:inputType="text"
-            android:minHeight="18dp"
+            android:minHeight="48dp"
             android:textColor="#FFFFFF" />
 
         <EditText
@@ -49,7 +49,7 @@
             android:autofillHints="username"
             android:hint="@string/fathers_name"
             android:inputType="text"
-            android:minHeight="18dp"
+            android:minHeight="48dp"
             android:textColor="#FFFFFF" />
 
 
@@ -60,7 +60,7 @@
             android:autofillHints="emailAddress"
             android:hint="@string/email"
             android:inputType="text"
-            android:minHeight="18dp"
+            android:minHeight="48dp"
             android:textColor="#FFFFFF"
             tools:ignore="TextFields" />
 
@@ -72,7 +72,7 @@
             android:autofillHints="password"
             android:hint="@string/password"
             android:inputType="textPassword"
-            android:minHeight="18dp"
+            android:minHeight="48dp"
             android:textColor="#FFFFFF" />
 
 
@@ -83,7 +83,7 @@
             android:autofillHints="username"
             android:hint="@string/phone_number"
             android:inputType="phone"
-            android:minHeight="18dp"
+            android:minHeight="48dp"
             android:textColor="#FFFFFF"
             tools:ignore="TextFields" />
 
@@ -101,29 +101,32 @@
                 android:autofillHints="Age"
                 android:hint="@string/age"
                 android:inputType="number"
-                android:minHeight="18dp"
+                android:minHeight="48dp"
                 android:textColor="#FFFFFF" />
 
-           <RadioButton
-               android:id="@+id/male"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:drawableLeft="@drawable/ic_male"
-               android:layout_marginLeft="25dp"
-               android:text="@string/male"
-               android:onClick="onRadioButtonClicked"
+            <RadioButton
+                android:id="@+id/male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:drawableStart="@drawable/ic_male"
+                android:onClick="onRadioButtonClicked"
+                android:text="@string/male"
+                android:textColor="#ffffff"
 
-               />
+                tools:ignore="UsingOnClickInXml,TouchTargetSizeCheck" />
+
             <RadioButton
                 android:id="@+id/female"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/ic_femlae"
-                android:layout_marginLeft="25dp"
-                android:text="@string/female"
+                android:layout_marginStart="25dp"
+                android:drawableStart="@drawable/ic_femlae"
                 android:onClick="onRadioButtonClicked"
+                android:text="@string/female"
+                android:textColor="#ffffff"
 
-                />
+                tools:ignore="UsingOnClickInXml,TouchTargetSizeCheck" />
 
 
 
@@ -136,7 +139,7 @@
             android:autofillHints="Address"
             android:hint="@string/address"
             android:inputType="text"
-            android:minHeight="18dp"
+            android:minHeight="48dp"
             android:textColor="#FFFFFF" />
 
 
@@ -169,7 +172,7 @@
                 android:layout_marginEnd="20dp"
                 android:paddingTop="10dp"
                 android:text="@string/have_an_account_sign_in"
-                android:textColor="@color/purple_700" />
+                android:textColor="#FFE0B2" />
 
 
         </LinearLayout>

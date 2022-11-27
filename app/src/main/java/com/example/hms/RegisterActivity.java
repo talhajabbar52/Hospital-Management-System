@@ -28,7 +28,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private Button register;
     private RadioButton male, female;
     private TextView banner;
-    String userGender = "";
+    String userGender;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -134,7 +134,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
 
         if (Pass.isEmpty()) {
-            pass.setError("Enter Full Name");
+            pass.setError("Password Required ");
             name.requestFocus();
 
         }

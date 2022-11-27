@@ -16,17 +16,17 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="130dp"
         android:gravity="center"
-        android:text="@string/hms"
-        android:textSize="45sp"
-        android:textStyle="bold|italic"
-        android:textColor="#F2EEF0"
+        android:paddingTop="0dp"
         android:shadowColor="@color/black"
-        android:shadowRadius="50"
         android:shadowDx="1"
         android:shadowDy="1"
-        android:layout_marginTop="130dp"
-        android:paddingTop="0dp"/>
+        android:shadowRadius="50"
+        android:text="@string/hms"
+        android:textColor="#455A64"
+        android:textSize="45sp"
+        android:textStyle="bold|italic" />
 
     <LinearLayout
         android:layout_width="300dp"
@@ -46,7 +46,7 @@
             android:textColor="#000000"
 
 
-            android:textColorHint="@color/white" />
+            android:textColorHint="#263238" />
 
         <EditText
             android:id="@+id/edt_txt_user_pass"
@@ -57,8 +57,7 @@
             android:inputType="textPassword"
             android:minHeight="48dp"
             android:textColor="#000000"
-            android:textColorHint="@color/white"
-            />
+            android:textColorHint="#4527A0" />
     </LinearLayout>
 
     <LinearLayout
@@ -102,13 +101,14 @@
 
 
     </LinearLayout>
+
     <TextView
         android:id="@+id/newAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="-70dp"
         android:text="@string/create_an_account"
-        android:layout_marginLeft="-70dp"
-        />
+        android:textColor="#263238" />
 
 
 
