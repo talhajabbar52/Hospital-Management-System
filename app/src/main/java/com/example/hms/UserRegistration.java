@@ -1,7 +1,7 @@
 package com.example.hms;
 
 public class UserRegistration {
-    public String   Name,FName,Email,Male,Phone,Address,Age,Gender;
+    public String   Name,FName,Email,Phone,Address,Age,Gender;
 
     public UserRegistration(){
 
