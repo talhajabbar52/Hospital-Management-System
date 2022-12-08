@@ -112,53 +112,36 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         Address = address.getText().toString().trim();
         Phone = phone.getText().toString().trim();
 
-
         if (Name.isEmpty()) {
             name.setError("Enter Full Name");
-            name.requestFocus();
-
         }
-        if (FName.isEmpty()) {
+
+        else if (FName.isEmpty()) {
             fName.setError("Enter Full Name");
-            fName.requestFocus();
-
         }
-        if (Email.isEmpty()) {
+        else if (Email.isEmpty()) {
             email.setError("Email required");
-            email.requestFocus();
-
         }
-        if (!Patterns.EMAIL_ADDRESS.matcher(Email).matches()) {
+        else if (!Patterns.EMAIL_ADDRESS.matcher(Email).matches()) {
             email.setError("Enter valid Email");
-            email.requestFocus();
-        }
 
-        if (Pass.isEmpty()) {
+        }
+        else if (Pass.isEmpty()) {
             pass.setError("Password Required ");
-            name.requestFocus();
-
         }
-        if (pass.length() <= 8) {
+        else if (pass.length() <= 8) {
             pass.setError("Password must be grater than 8 character");
-            pass.requestFocus();
         }
-
-        if (Address.isEmpty()) {
+        else if (Address.isEmpty()) {
             address.setError("Address required");
-            address.requestFocus();
-
         }
-        if (Age.isEmpty()) {
+        else if (Age.isEmpty()) {
             age.setError("Age required");
-            age.requestFocus();
-
         }
-
-        if (Phone.isEmpty()) {
+        else if (Phone.isEmpty()) {
             phone.setError("Phone no required");
-            phone.requestFocus();
-
-        } else {
+        }
+        else {
             mAuth.createUserWithEmailAndPassword(Email, Pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
