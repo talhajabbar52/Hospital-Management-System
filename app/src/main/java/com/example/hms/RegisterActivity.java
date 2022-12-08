@@ -111,7 +111,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         uGender = userGender;
         Address = address.getText().toString().trim();
         Phone = phone.getText().toString().trim();
-
         if (Name.isEmpty()) {
             name.setError("Enter Full Name");
         }

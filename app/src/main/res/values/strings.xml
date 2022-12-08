@@ -31,4 +31,6 @@
     <string name="full_name">Full Name</string>
     <string name="register_nowBanner">Register Now</string>
     <string name="create_an_account">Create an account</string>
+    <string name="patient_name">Patient Name</string>
+    <string name="patient_age">Patient Age</string>
 </resources>
