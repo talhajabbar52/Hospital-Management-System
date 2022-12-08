@@ -23,12 +23,12 @@ import com.google.firebase.database.FirebaseDatabase;
 
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
+    String userGender;
     private FirebaseAuth mAuth;
     private EditText name, email, pass, age, fName, address, phone;
     private Button register;
     private RadioButton male, female;
     private TextView banner;
-    String userGender;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -158,37 +158,38 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             phone.setError("Phone no required");
             phone.requestFocus();
 
-        }
+        } else {
+            mAuth.createUserWithEmailAndPassword(Email, Pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
 
-        mAuth.createUserWithEmailAndPassword(Email, Pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
+                        UserRegistration user = new UserRegistration(Name, FName, Email, Phone, Age, uGender, Address);
 
-                    UserRegistration user = new UserRegistration(Name, FName, Email, Phone, Age, uGender, Address);
-
-                    FirebaseDatabase.getInstance().getReference("User Registration").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_LONG).show();
-                                startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                        FirebaseDatabase.getInstance().getReference("User Registration").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_LONG).show();
+                                    startActivity(new Intent(RegisterActivity.this, MainActivity.class));
 
 
-                            } else {
-                                Toast.makeText(RegisterActivity.this, "Registration Failed", Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(RegisterActivity.this, "Registration Failed", Toast.LENGTH_LONG).show();
 
+                                }
                             }
-                        }
-                    });
+                        });
 
-                } else {
 
-                    Toast.makeText(RegisterActivity.this, "Registration Failed ", Toast.LENGTH_LONG).show();
+                    } else {
 
+                        Toast.makeText(RegisterActivity.this, "Registration Failed ", Toast.LENGTH_LONG).show();
+
+                    }
                 }
-            }
-        });
+            });
+        }
 
 
     }
