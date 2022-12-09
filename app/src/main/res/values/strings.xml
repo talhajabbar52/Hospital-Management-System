@@ -6,8 +6,6 @@
     <string name="user_login">User Login</string>
     <string name="admin_login">Admin Login</string>
     <string name="title_activity_user_panel">UserPanel</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
@@ -33,4 +31,7 @@
     <string name="create_an_account">Create an account</string>
     <string name="patient_name">Patient Name</string>
     <string name="patient_age">Patient Age</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>
