@@ -47,6 +47,10 @@ public class UserPanelActivity extends AppCompatActivity implements NavigationVi
             case R.id.nav_report:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ReportsFragment()).commit();
                 break;
+
+            case R.id.nav_doctor_timetable:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DoctorTimetableFragment()).commit();
+                break;
         }
 
         drawer.closeDrawer(GravityCompat.START);

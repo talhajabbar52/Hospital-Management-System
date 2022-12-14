@@ -13,6 +13,11 @@
             android:id="@+id/nav_report"
             android:icon="@drawable/ic_report"
             android:title="Reports" />
+
+        <item
+            android:id="@+id/nav_doctor_timetable"
+            android:icon="@drawable/ic_doctors_timetable"
+            android:title="Doctors Timetable" />
     </group>
 
 </menu>

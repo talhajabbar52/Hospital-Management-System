@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.user_btn:
                 login();
         }
-
     }
 
     private void login() {
@@ -76,9 +75,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 }
             });
-
         }
-
     }
-
 }
