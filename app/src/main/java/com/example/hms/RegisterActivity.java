@@ -1,6 +1,7 @@
 package com.example.hms;
 
-import androidx.annotation.NonNull;
+import
+        androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -21,14 +22,16 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Objects;
+
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
     String userGender;
     private FirebaseAuth mAuth;
     private EditText name, email, pass, age, fName, address, phone;
-    private Button register;
+    Button register;
     private RadioButton male, female;
-    private TextView banner;
+    TextView banner;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -36,7 +39,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         mAuth = FirebaseAuth.getInstance();
-        //Assigning objet their ID's
+        //Assigning object their ID's
         name = findViewById(R.id.txtUser);
         fName = findViewById(R.id.txtFName);
         email = findViewById(R.id.txtEmail);
@@ -46,7 +49,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         address = findViewById(R.id.txtAddress);
         banner = findViewById(R.id.signIn);
         register = findViewById(R.id.Register_btn);
-
         male = findViewById(R.id.male);
         female = findViewById(R.id.female);
 
@@ -148,7 +150,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                         UserRegistration user = new UserRegistration(Name, FName, Email, Phone, Age, uGender, Address);
 
-                        FirebaseDatabase.getInstance().getReference("User Registration").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        FirebaseDatabase.getInstance().getReference("User Registration").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {

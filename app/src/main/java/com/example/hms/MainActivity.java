@@ -3,6 +3,7 @@ package com.example.hms;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,8 +16,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
-import org.w3c.dom.Text;
+import java.util.Objects;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     EditText edt_Username,edt_pass;
@@ -28,20 +31,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         edt_Username = findViewById(R.id.edt_txt_user);
         edt_pass = findViewById(R.id.edt_txt_user_pass);
         btn_user = findViewById(R.id.user_btn);
         btn_admin = findViewById(R.id.admin_btn);
-        register = (TextView) findViewById(R.id.newAccount);
+        register =  findViewById(R.id.newAccount);
         mAuth = FirebaseAuth.getInstance();
 
         btn_user.setOnClickListener(this);
         register.setOnClickListener(this);
+        btn_admin.setOnClickListener(this);
 
 
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
 
@@ -51,9 +55,49 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.user_btn:
                 login();
+                break;
+            case R.id.admin_btn:
+                adminLogin();
+                break;
+
         }
     }
 
+    private void adminLogin() {
+
+        //admin email=admintalha@hms.com
+        //admin pass=admin1234
+       String adminEmail = edt_Username.getText().toString().trim();
+       String adminPass = edt_Username.getText().toString().trim();
+
+       if (adminEmail.isEmpty()){
+           edt_Username.setError("Invalid Email");
+           edt_Username.requestFocus();
+
+       }
+       else if (adminPass.isEmpty()){
+           edt_pass.setError("Incorrect Password");
+           edt_pass.requestFocus();
+       }
+       else
+       {
+           mAuth.signInWithEmailAndPassword(adminEmail,adminPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+               @Override
+               public void onComplete(@NonNull Task<AuthResult> task) {
+                   if (task.isSuccessful()) {
+                       Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                       startActivity(new Intent(MainActivity.this, AdminPanelActivity.class));
+                   }
+                      else {
+                           Toast.makeText(MainActivity.this, "Login Unsuccessful"+task.getException(), Toast.LENGTH_SHORT).show();
+                       }
+
+
+
+               }
+           });
+       }
+    }
     private void login() {
         String user=edt_Username.getText().toString().trim();
         String pass=edt_pass.getText().toString().trim();
@@ -71,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         startActivity(new Intent(MainActivity.this, UserPanelActivity.class));
 
                     }else {
-                        Toast.makeText(MainActivity.this, "Login Failed"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Login Failed"+ Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
