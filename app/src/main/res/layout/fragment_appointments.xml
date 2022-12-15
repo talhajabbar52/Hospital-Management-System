@@ -2,42 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_light"
-    android:paddingLeft="12dp"
-    android:paddingTop="20dp">
-
-    <EditText
-        android:id="@+id/edtPatientName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="Patient Name"/>
-
-    <EditText
-        android:id="@+id/edtPatientAge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="131dp"
-        android:hint="Patient Age"
-        android:paddingEnd="12dp" />
+    android:background="@android:color/holo_blue_light">
 
     <TextView
-        android:id="@+id/txtDocName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/edtPatientAge"
-        android:layout_marginBottom="-33dp"
-        android:text="Doctor Name" />
-
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/txtDocName"
-        android:layout_alignParentRight="true"
-
-        android:layout_marginRight="164dp"
-        android:layout_marginBottom="-2dp"
-        android:autofillHints="Doctor Name" />
-
+        android:text="Appointment Book"
+        android:textSize="40dp"
+        android:layout_centerInParent="true"/>
 
 </RelativeLayout>

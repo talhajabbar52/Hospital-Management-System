@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:autofillHints="emailAddress"
             android:hint="@string/email"
-            android:inputType="text"
+            android:inputType="textEmailAddress"
             android:minHeight="48dp"
             android:textColor="#FFFFFF"
             tools:ignore="TextFields" />
