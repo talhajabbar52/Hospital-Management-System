@@ -22,8 +22,8 @@ import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    EditText edt_Username,edt_pass;
-    Button btn_user,btn_admin;
+    EditText edt_Username, edt_pass;
+    Button btn_user, btn_admin;
     TextView register;
     private FirebaseAuth mAuth;
 
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         edt_pass = findViewById(R.id.edt_txt_user_pass);
         btn_user = findViewById(R.id.user_btn);
         btn_admin = findViewById(R.id.admin_btn);
-        register =  findViewById(R.id.newAccount);
+        register = findViewById(R.id.newAccount);
         mAuth = FirebaseAuth.getInstance();
 
         btn_user.setOnClickListener(this);
@@ -49,9 +49,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.newAccount:
-                startActivity(new Intent(this,RegisterActivity.class));
+                startActivity(new Intent(this, RegisterActivity.class));
                 break;
             case R.id.user_btn:
                 login();
@@ -67,55 +67,51 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //admin email=admintalha@hms.com
         //admin pass=admin1234
-       String adminEmail = edt_Username.getText().toString().trim();
-       String adminPass = edt_Username.getText().toString().trim();
+        String adminEmail = edt_Username.getText().toString().trim();
+        String adminPass = edt_Username.getText().toString().trim();
 
-       if (adminEmail.isEmpty()){
-           edt_Username.setError("Invalid Email");
-           edt_Username.requestFocus();
+        if (adminEmail.isEmpty()) {
+            edt_Username.setError("Invalid Email");
+            edt_Username.requestFocus();
 
-       }
-       else if (adminPass.isEmpty()){
-           edt_pass.setError("Incorrect Password");
-           edt_pass.requestFocus();
-       }
-       else
-       {
-           mAuth.signInWithEmailAndPassword(adminEmail,adminPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-               @Override
-               public void onComplete(@NonNull Task<AuthResult> task) {
-                   if (task.isSuccessful()) {
-                       Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                       startActivity(new Intent(MainActivity.this, AdminPanelActivity.class));
-                   }
-                      else {
-                           Toast.makeText(MainActivity.this, "Login Unsuccessful"+task.getException(), Toast.LENGTH_SHORT).show();
-                       }
-
-
-
-               }
-           });
-       }
-    }
-    private void login() {
-        String user=edt_Username.getText().toString().trim();
-        String pass=edt_pass.getText().toString().trim();
-        if (user.isEmpty()){
-            edt_Username.setError("Email is Required");
-        }if (pass.isEmpty()){
-            edt_pass.setError("Password is Required");
-        }
-        else {
-            mAuth.signInWithEmailAndPassword(user,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        } else if (adminPass.isEmpty()) {
+            edt_pass.setError("Incorrect Password");
+            edt_pass.requestFocus();
+        } else {
+            mAuth.signInWithEmailAndPassword(adminEmail, adminPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()){
+                    if (task.isSuccessful()) {
+                        Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainActivity.this, AdminPanelActivity.class));
+                    } else {
+                        Toast.makeText(MainActivity.this, "Login Unsuccessful" + task.getException(), Toast.LENGTH_SHORT).show();
+                    }
+
+
+                }
+            });
+        }
+    }
+
+    private void login() {
+        String user = edt_Username.getText().toString().trim();
+        String pass = edt_pass.getText().toString().trim();
+        if (user.isEmpty()) {
+            edt_Username.setError("Email is Required");
+        }
+        if (pass.isEmpty()) {
+            edt_pass.setError("Password is Required");
+        } else {
+            mAuth.signInWithEmailAndPassword(user, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
                         Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(MainActivity.this, UserPanelActivity.class));
 
-                    }else {
-                        Toast.makeText(MainActivity.this, "Login Failed"+ Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(MainActivity.this, "Login Failed" + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
