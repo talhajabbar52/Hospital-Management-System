@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 
 import com.google.android.material.navigation.NavigationView;
@@ -64,4 +65,6 @@ public class AdminPanelActivity extends AppCompatActivity implements NavigationV
             super.onBackPressed();
         }
     }
+
+
 }
