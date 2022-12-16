@@ -6,6 +6,7 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,7 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Objects;
 
 
-public class AddDoctorsFragment extends Fragment implements View.OnClickListener {
+public class AddDoctorsFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     EditText name,email,phone,age, dcoGen;
     RadioButton male,female;
     Spinner Specialist;
@@ -54,6 +55,7 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),R.array.Specialist, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Specialist.setAdapter(adapter);
+        Specialist.setOnItemClickListener((AdapterView.OnItemClickListener) this);
 
         return v;
     }
@@ -146,6 +148,17 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
        }
 
 
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        String specialist = parent.getItemAtPosition(position).toString();
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 }
