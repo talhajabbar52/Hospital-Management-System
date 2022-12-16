@@ -6,6 +6,7 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -50,6 +51,10 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
         btnSave=v.findViewById(R.id.btnAddDco);
         dcoGen=v.findViewById(R.id.txtDocGen);
         btnSave.setOnClickListener(this);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),R.array.Specialist, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Specialist.setAdapter(adapter);
+
         return v;
     }
     @Override
