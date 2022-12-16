@@ -70,11 +70,13 @@
             android:inputType="number"
             android:minHeight="48dp"
             android:textColor="#000000" />
+
         <EditText
             android:id="@+id/txtDocGen"
             android:layout_width="370dp"
             android:layout_height="wrap_content"
-            android:hint="@string/gender"/>
+            android:hint="@string/gender"
+            android:minHeight="48dp" />
 
 
        <!-- <LinearLayout
@@ -118,6 +120,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/DocSpecialist"
+
             />
 
 </LinearLayout>

@@ -28,7 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Objects;
 
 
-public class AddDoctorsFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+public class AddDoctorsFragment extends Fragment implements View.OnClickListener {
     EditText name,email,phone,age, dcoGen;
     RadioButton male,female;
     Spinner Specialist;
@@ -57,7 +57,20 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),R.array.Specialist, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Specialist.setAdapter(adapter);
-        Specialist.setOnItemClickListener((AdapterView.OnItemClickListener) this);
+        Specialist.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String specialistDoc = parent.getItemAtPosition(position).toString();
+                DocSpecialist = Specialist.getSelectedItem().toString().trim();
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         return v;
     }
@@ -107,7 +120,7 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
 
     private void saveDetails(String spinnerItem) {
 
-       String Name,Email, Gender ;
+       String Name,Email, Gender ,specialist ;
        Integer Age,Phone;
 
        Name=name.getText().toString().trim();
@@ -115,6 +128,7 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
        Phone= Integer.parseInt(phone.getText().toString().trim());
        Age=Integer.parseInt(age.getText().toString().trim());
        Gender=dcoGen.getText().toString().trim();
+       specialist=Specialist.getSelectedItem().toString().trim();
 
 
        if (Name.isEmpty()){
@@ -153,15 +167,5 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
 
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String specialistDoc = parent.getItemAtPosition(position).toString();
-        DocSpecialist = Specialist.getSelectedItem().toString();
-        textView.setText(DocSpecialist);
-    }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
 }
