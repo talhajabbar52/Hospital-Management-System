@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,7 +34,8 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
     Spinner Specialist;
     String gender;
     Button btnSave;
-
+    String DocSpecialist;
+    TextView textView;
 
 
 
@@ -98,14 +100,14 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnAddDco:
-                saveDetails();
+                saveDetails(DocSpecialist);
                 break;
         }
     }
 
-    private void saveDetails() {
+    private void saveDetails(String spinnerItem) {
 
-       String Name,Email, Gender ,specialist;
+       String Name,Email, Gender ;
        Integer Age,Phone;
 
        Name=name.getText().toString().trim();
@@ -113,7 +115,7 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
        Phone= Integer.parseInt(phone.getText().toString().trim());
        Age=Integer.parseInt(age.getText().toString().trim());
        Gender=dcoGen.getText().toString().trim();
-       specialist=Specialist.toString().trim();
+
 
        if (Name.isEmpty()){
            name.setError("Provide Name");
@@ -133,7 +135,7 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
            age.setError("Provide Age");
        }
        else{
-           AddDoctors addDcc=new AddDoctors(Name,Email,Phone,Age,Gender,specialist);
+           AddDoctors addDcc=new AddDoctors(Name,Email,Phone,Age,Gender,spinnerItem);
            FirebaseDatabase.getInstance().getReference("Doctor Info").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).setValue(addDcc).addOnCompleteListener(new OnCompleteListener<Void>() {
                @Override
                public void onComplete(@NonNull Task<Void> task) {
@@ -153,8 +155,9 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String specialist = parent.getItemAtPosition(position).toString();
-
+        String specialistDoc = parent.getItemAtPosition(position).toString();
+        DocSpecialist = Specialist.getSelectedItem().toString();
+        textView.setText(DocSpecialist);
     }
 
     @Override
