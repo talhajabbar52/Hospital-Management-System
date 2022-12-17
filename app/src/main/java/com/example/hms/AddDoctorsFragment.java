@@ -1,6 +1,6 @@
 package com.example.hms;
 
-import static java.lang.Integer.parseInt;
+
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
-import android.widget.TextView;
+
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -37,7 +37,7 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
     String gender;
     Button btnSave;
     String DocSpecialist;
-    TextView textView;
+
 
 
 
@@ -62,7 +62,7 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
         Specialist.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String specialistDoc = parent.getItemAtPosition(position).toString();
+                DocSpecialist = parent.getItemAtPosition(position).toString();
                 DocSpecialist = Specialist.getSelectedItem().toString().trim();
 
 
@@ -113,22 +113,20 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.btnAddDco:
-                saveDetails(DocSpecialist);
-                break;
+        if (v.getId() == R.id.btnAddDco) {
+            saveDetails();
         }
     }
 
-    private void saveDetails(String spinnerItem) {
+    private void saveDetails() {
 
-       String Name,Email, Gender ,specialist ;
-       Integer Age,Phone;
+       String Name,Email, Gender ,specialist, Age,Phone ;
+
 
        Name=name.getText().toString().trim();
        Email=email.getText().toString().trim();
-       Phone= parseInt(phone.getText().toString().trim());
-       Age= parseInt(age.getText().toString().trim());
+       Phone= phone.getText().toString().trim();
+       Age= age.getText().toString().trim();
        Gender=dcoGen.getText().toString().trim();
        specialist=Specialist.getSelectedItem().toString().trim();
 
@@ -143,14 +141,15 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
            email.setError("Enter valid Email");
 
        }
-       else if(Phone.toString().isEmpty()){
+       else if(Phone.isEmpty()){
            phone.setError("Provide Email");
 
        }
-       else if(Age.toString().isEmpty()){
+       else if(Age.isEmpty()){
            age.setError("Provide Age");
        }
        else{
+
            AddDoctors addDcc=new AddDoctors(Name,Email,Phone,Age,Gender,specialist);
            FirebaseDatabase.getInstance().getReference("Doctor Info").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).setValue(addDcc).addOnCompleteListener(new OnCompleteListener<Void>() {
                @Override
