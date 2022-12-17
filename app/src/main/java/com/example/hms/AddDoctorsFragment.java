@@ -1,5 +1,7 @@
 package com.example.hms;
 
+import static java.lang.Integer.parseInt;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -125,8 +127,8 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
 
        Name=name.getText().toString().trim();
        Email=email.getText().toString().trim();
-       Phone= Integer.parseInt(phone.getText().toString().trim());
-       Age=Integer.parseInt(age.getText().toString().trim());
+       Phone= parseInt(phone.getText().toString().trim());
+       Age= parseInt(age.getText().toString().trim());
        Gender=dcoGen.getText().toString().trim();
        specialist=Specialist.getSelectedItem().toString().trim();
 
@@ -149,12 +151,13 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
            age.setError("Provide Age");
        }
        else{
-           AddDoctors addDcc=new AddDoctors(Name,Email,Phone,Age,Gender,spinnerItem);
+           AddDoctors addDcc=new AddDoctors(Name,Email,Phone,Age,Gender,specialist);
            FirebaseDatabase.getInstance().getReference("Doctor Info").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).setValue(addDcc).addOnCompleteListener(new OnCompleteListener<Void>() {
                @Override
                public void onComplete(@NonNull Task<Void> task) {
                    if (task.isSuccessful()){
                        Toast.makeText(getActivity(), "Data Inserted Successfully", Toast.LENGTH_SHORT).show();
+
                    }
                    else {
                        Toast.makeText(getActivity(), "Failed", Toast.LENGTH_SHORT).show();
