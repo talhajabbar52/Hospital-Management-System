@@ -1,7 +1,5 @@
 package com.example.hms;
 
-
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -14,23 +12,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
-
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import androidx.fragment.app.Fragment;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-
 
 
 public class AddDoctorsFragment extends Fragment implements View.OnClickListener {
@@ -41,10 +34,7 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
     Button btnSave;
     String DocSpecialist;
     private int availableUser = 0;
-    DatabaseReference myRef=FirebaseDatabase.getInstance().getReference();
-
-
-
+    DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
 
     @SuppressLint("MissingInflatedId")
     @Nullable
@@ -61,11 +51,10 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
         Specialist = v.findViewById(R.id.DocSpecialist);
         btnSave = v.findViewById(R.id.btnAddDco);
         dcoGen = v.findViewById(R.id.txtDocGen);
-        btnSave.setOnClickListener(this);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.Specialist, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        btnSave.setOnClickListener(this);
         Specialist.setAdapter(adapter);
-
         Specialist.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -81,24 +70,23 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
             }
         });
 
-    myRef.addValueEventListener(new ValueEventListener() {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot snapshot) {
-            if (snapshot.hasChild("Doctor Info")){
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.hasChild("Doctor Info")) {
 
-                availableUser = (int) snapshot.child("Doctor Info").getChildrenCount();
+                    availableUser = (int) snapshot.child("Doctor Info").getChildrenCount();
+
+                } else {
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
-            else{
-                    availableUser=0;
-            }
-        }
-
-        @Override
-        public void onCancelled(@NonNull DatabaseError error) {
-
-        }
-    });
+        });
 
         return v;
     }
@@ -165,13 +153,12 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
 
             AddDoctors addDoc = new AddDoctors(Name, Email, Phone, Age, Gender, specialist);
 
-            myRef.child("Doctor Info").child(String.valueOf(availableUser + 1)).setValue(addDoc).addOnCompleteListener(new OnCompleteListener<Void>() {
+            myRef.child("Doctor Info").child(String.valueOf(availableUser+1)).setValue(addDoc).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()){
+                    if (task.isSuccessful()) {
                         Toast.makeText(getActivity(), "Data Inserted ", Toast.LENGTH_SHORT).show();
-                    }
-                    else   {
+                    } else {
                         Toast.makeText(getActivity(), "Failed", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -179,6 +166,6 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
         }
     }
 
-    }
+}
 
 
