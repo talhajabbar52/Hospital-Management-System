@@ -136,6 +136,7 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
         Age = age.getText().toString().trim();
         Gender = dcoGen.getText().toString().trim();
         specialist = Specialist.getSelectedItem().toString().trim();
+        Integer Ages=Integer.parseInt(Age);
 
         if (Name.isEmpty()) {
             name.setError("Provide Name");
@@ -149,7 +150,14 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
 
         } else if (Age.isEmpty()) {
             age.setError("Provide Age");
-        } else {
+        }
+
+        else if (Ages<=25){
+            age.setError("invalid Age");
+
+        }
+
+        else {
 
             AddDoctors addDoc = new AddDoctors(Name, Email, Phone, Age, Gender, specialist);
 
