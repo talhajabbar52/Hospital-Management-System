@@ -63,7 +63,6 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
         Specialist = v.findViewById(R.id.DocSpecialist);
         btnSave = v.findViewById(R.id.btnAddDco);
         dcoGen = v.findViewById(R.id.txtDocGen);
-        mAuth = FirebaseAuth.getInstance();
         btnSave.setOnClickListener(this);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.Specialist, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
