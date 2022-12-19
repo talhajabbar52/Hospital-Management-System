@@ -16,7 +16,4 @@ public class AddDoctors {
         this.Specialist=Specialist;
 
     }
-
-
-
 }

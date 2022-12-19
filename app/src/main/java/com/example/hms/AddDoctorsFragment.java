@@ -18,7 +18,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -76,8 +75,6 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
                 if (snapshot.hasChild("Doctor Info")) {
 
                     availableUser = (int) snapshot.child("Doctor Info").getChildrenCount();
-
-                } else {
 
                 }
             }
@@ -137,7 +134,6 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
         Gender = dcoGen.getText().toString().trim();
         specialist = Specialist.getSelectedItem().toString().trim();
         Integer Ages=Integer.parseInt(Age);
-
         if (Name.isEmpty()) {
             name.setError("Provide Name");
         } else if (Email.isEmpty()) {
