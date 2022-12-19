@@ -26,7 +26,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Objects;
 
@@ -39,6 +43,10 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
     Button btnSave;
     String DocSpecialist;
     private FirebaseAuth mAuth;
+    private int availableUser = 0;
+    DatabaseReference myRef=FirebaseDatabase.getInstance().getReference();
+
+
 
 
     @SuppressLint("MissingInflatedId")
@@ -76,6 +84,26 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
 
             }
         });
+
+    myRef.addValueEventListener(new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            if (snapshot.hasChild("Doctor Info")){
+
+                availableUser = (int) snapshot.child("Doctor Info").getChildrenCount();
+
+            }
+            else{
+
+
+            }
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+
+        }
+    });
 
         return v;
     }
@@ -127,7 +155,7 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
         Age = age.getText().toString().trim();
         Gender = dcoGen.getText().toString().trim();
         specialist = Specialist.getSelectedItem().toString().trim();
-        Pass = "testuser";
+
 
 
         if (Name.isEmpty()) {
@@ -146,12 +174,13 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
 
             AddDoctors addDoc = new AddDoctors(Name, Email, Phone, Age, Gender, specialist);
 
-            FirebaseDatabase.getInstance().getReference("Doctor Info").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(addDoc).addOnCompleteListener(new OnCompleteListener<Void>() {
+            myRef.child("Doctor Info").child(String.valueOf(availableUser+1)).setValue(addDoc).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(getActivity(), "Successful", Toast.LENGTH_SHORT).show();
-                    } else {
+                    if (task.isSuccessful()){
+                        Toast.makeText(getActivity(), "Data Inserted ", Toast.LENGTH_SHORT).show();
+                    }
+                    else   {
                         Toast.makeText(getActivity(), "Failed", Toast.LENGTH_SHORT).show();
                     }
                 }
