@@ -42,7 +42,6 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
     String gender;
     Button btnSave;
     String DocSpecialist;
-    private FirebaseAuth mAuth;
     private int availableUser = 0;
     DatabaseReference myRef=FirebaseDatabase.getInstance().getReference();
 
@@ -146,17 +145,13 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
     }
 
     private void saveDetails() {
-
-        String Name, Email, Gender, specialist, Age, Phone, Pass;
-
+        String Name, Email, Gender, specialist, Age, Phone;
         Name = name.getText().toString().trim();
         Email = email.getText().toString().trim();
         Phone = phone.getText().toString().trim();
         Age = age.getText().toString().trim();
         Gender = dcoGen.getText().toString().trim();
         specialist = Specialist.getSelectedItem().toString().trim();
-
-
 
         if (Name.isEmpty()) {
             name.setError("Provide Name");
@@ -174,7 +169,7 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
 
             AddDoctors addDoc = new AddDoctors(Name, Email, Phone, Age, Gender, specialist);
 
-            myRef.child("Doctor Info").child(String.valueOf(availableUser+1)).setValue(addDoc).addOnCompleteListener(new OnCompleteListener<Void>() {
+            myRef.child("Doctor Info").child(String.valueOf(availableUser + 1)).setValue(addDoc).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()){
@@ -186,8 +181,6 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
                 }
             });
         }
-
-
     }
 
     }
