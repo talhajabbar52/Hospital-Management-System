@@ -16,4 +16,8 @@ public class AddDoctors {
         this.Specialist=Specialist;
 
     }
+
+    public AddDoctors(String name){
+        this.name = name;
+    }
 }
