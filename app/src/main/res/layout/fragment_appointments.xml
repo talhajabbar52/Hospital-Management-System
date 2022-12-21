@@ -101,16 +101,14 @@
         android:textSize="17dp"
         android:paddingLeft="4dp"/>
 
-    <Button
+    <TextView
         android:id="@+id/date_picker"
-        style="?android:spinnerStyle"
-        android:layout_width="250dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/d_name"
-        android:layout_marginLeft="17dp"
-        android:layout_marginTop="-6dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="7dp"
         android:layout_toRightOf="@id/date"
-        android:onClick="OpenDatePicker"
         android:text="Jan 01 2020" />
 
     <EditText
