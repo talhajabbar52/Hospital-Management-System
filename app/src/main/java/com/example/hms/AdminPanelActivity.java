@@ -27,8 +27,6 @@ public class AdminPanelActivity extends AppCompatActivity implements NavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_panel);
-        setContentView(R.layout.nav_header);
-
 
         Toolbar Admin_toolbar = findViewById(R.id.Admin_toolbar);
         setSupportActionBar(Admin_toolbar);
@@ -36,8 +34,6 @@ public class AdminPanelActivity extends AppCompatActivity implements NavigationV
         drawer = findViewById(R.id.admin_drawer_layout);
         NavigationView navigationView = findViewById(R.id.admin_nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, Admin_toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
