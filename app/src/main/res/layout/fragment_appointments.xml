@@ -5,10 +5,7 @@
     android:background="@drawable/doctor"
     android:padding="12dp">
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/sos"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"/>-->
+
     <TextView
         android:id="@+id/app_book"
         android:layout_width="match_parent"
@@ -87,9 +84,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/P_gender"
-        android:layout_marginLeft="22dp"
-        android:layout_marginTop="6dp"
-        android:layout_toRightOf="@+id/d_name" />
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="-8dp"
+        android:layout_toRightOf="@+id/d_name"
+        android:minHeight="5dp" />
 
     <TextView
         android:id="@+id/date"
@@ -110,7 +108,7 @@
         android:layout_marginLeft="18dp"
         android:layout_marginTop="7dp"
         android:layout_toRightOf="@id/date"
-        android:text="Jan 01 2020" />
+        android:text="DD MM YYY" />
 
     <TextView
         android:id="@+id/d_special_head"

@@ -90,44 +90,6 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
             return v;
     }
 
-    private void fetchData() {
-        listener = dbref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot mydata : snapshot.getChildren()){
-//                    list.add(mydata.getValue().toString());
-                    list.add(String.valueOf(mydata.child("name").getValue()));
-                    adapter.notifyDataSetChanged();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
-//        listener = dbref.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//
-//                for(DataSnapshot mydata : snapshot.getChildren()){
-//                    list.add(mydata.getValue().toString());
-//                    adapter.notifyDataSetChanged();
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-
-    }
-
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -140,9 +102,7 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
         }
     }
 
-    private void SaveDetails() {
 
-    }
 
     private void SelectDate() {
         Calendar cal = Calendar.getInstance();
@@ -154,5 +114,26 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
         DatePickerDialog Dialog = new DatePickerDialog(getActivity(), android.R.style.Theme_Holo_Light,mDateSetListener,year,month,day);
         Dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         Dialog.show();
+    }
+
+    private void fetchData() {
+        listener = dbref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot docNames : snapshot.getChildren()){
+                    list.add(String.valueOf(docNames.child("name").getValue()));
+                    adapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void SaveDetails() {
+
     }
 }
