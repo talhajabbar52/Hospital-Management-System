@@ -40,7 +40,7 @@ public class AppointmentFragment extends Fragment {
                 int year = cal.get(Calendar.YEAR);
                 int month = cal.get(Calendar.MONTH);
                 int day = cal.get(Calendar.DAY_OF_MONTH);
-
+//asdsadadadaddasda
 
                 DatePickerDialog Dialog = new DatePickerDialog(getActivity(), android.R.style.Theme_Holo_Light,mDateSetListener,year,month,day);
                 Dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
