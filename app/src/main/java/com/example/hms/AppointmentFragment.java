@@ -64,6 +64,7 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
         dbref = FirebaseDatabase.getInstance().getReference("Doctor Info");
 
 
+
         list = new ArrayList<String>();
         adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item,list);
         dName.setAdapter(adapter);
@@ -93,12 +94,11 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
         listener = dbref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                 for(DataSnapshot mydata : snapshot.getChildren()){
-                    list.add(mydata.getValue().toString());
+//                    list.add(mydata.getValue().toString());
+                    list.add(String.valueOf(mydata.child("name").getValue()));
                     adapter.notifyDataSetChanged();
                 }
-
             }
 
             @Override
@@ -106,6 +106,24 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
 
             }
         });
+
+
+//        listener = dbref.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//
+//                for(DataSnapshot mydata : snapshot.getChildren()){
+//                    list.add(mydata.getValue().toString());
+//                    adapter.notifyDataSetChanged();
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
     }
 
