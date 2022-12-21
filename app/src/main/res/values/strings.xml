@@ -34,6 +34,15 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="add_doctors">Add Doctors</string>
     <string name="gender">Gender</string>
+    <string name="appointment_book">Appointment Book</string>
+    <string name="patient_names">Patient Name</string>
+    <string name="patient_ages">Patient Age</string>
+    <string name="patient_gender">Patient Gender</string>
+    <string name="doctor_name">Doctor Name</string>
+    <string name="date">Date</string>
+    <string name="jan_01_2020">Jan 01 2020</string>
+    <string name="doctor_specialist">Doctor Specialist</string>
+    <string name="book_appointment">Book Appointment</string>
 
 
     <string-array name="Specialist">

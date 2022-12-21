@@ -20,7 +20,7 @@ import androidx.fragment.app.Fragment;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-public class AppointmentFragment extends Fragment {
+public class AppointmentFragment extends Fragment implements View.OnClickListener {
 
     private static final String TAG = "AppointmentFragment";
     private TextView mDisplayDate;
@@ -33,20 +33,8 @@ public class AppointmentFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_appointments, container, false);
 
         mDisplayDate = (TextView) v.findViewById(R.id.date_picker);
-        mDisplayDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
-//asdsadadadaddasda
+        mDisplayDate.setOnClickListener(this);
 
-                DatePickerDialog Dialog = new DatePickerDialog(getActivity(), android.R.style.Theme_Holo_Light,mDateSetListener,year,month,day);
-                Dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                Dialog.show();
-            }
-        });
 
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -61,4 +49,24 @@ public class AppointmentFragment extends Fragment {
         return v;
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.date_picker:
+                    SelectDate();
+                    break;
+        }
+    }
+
+    private void SelectDate() {
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+
+        DatePickerDialog Dialog = new DatePickerDialog(getActivity(), android.R.style.Theme_Holo_Light,mDateSetListener,year,month,day);
+        Dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        Dialog.show();
+    }
 }
