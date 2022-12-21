@@ -60,7 +60,6 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
                 DocSpecialist = parent.getItemAtPosition(position).toString();
                 DocSpecialist = Specialist.getSelectedItem().toString().trim();
 
-
             }
 
             @Override

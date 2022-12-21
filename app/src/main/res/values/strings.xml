@@ -37,13 +37,12 @@
 
 
     <string-array name="Specialist">
-        <item>general physician</item>
+        <item>General Physician</item>
         <item>Neurologists</item>
         <item>Dentist</item>
         <item>Dermatologists</item>
         <item>Infectious disease doctors</item>
         <item>Ophthalmologists</item>
         <item>Cardiologists</item>
-        <item>Hakeem</item>
     </string-array>
 </resources>
