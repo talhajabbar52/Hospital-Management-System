@@ -67,18 +67,6 @@
         android:textSize="17dp"
         android:paddingLeft="4dp"/>
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/d_special"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_below="@id/d_name"-->
-    <!--        android:layout_marginTop="5dp"-->
-    <!--        android:hint="Doctor Specialist"-->
-    <!--        android:textColor="#000000"-->
-    <!--        android:textColorHint="@color/black"-->
-    <!--        android:textSize="17dp"-->
-    <!--        android:paddingLeft="4dp"/>-->
-
     <Spinner
         android:id="@+id/spin"
         android:layout_width="wrap_content"
@@ -90,32 +78,10 @@
         android:minHeight="5dp" />
 
     <TextView
-        android:id="@+id/date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/d_name"
-        android:layout_marginTop="5dp"
-        android:hint="Date"
-        android:textColor="#000000"
-        android:textSize="17dp"
-        android:paddingLeft="4dp"/>
-
-    <TextView
-        android:id="@+id/date_picker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/d_name"
-        android:layout_marginLeft="18dp"
-        android:layout_marginTop="7dp"
-        android:layout_toRightOf="@id/date"
-        android:text="DD MM YYY" />
-
-    <TextView
         android:id="@+id/d_special_head"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/date"
-        android:minHeight="48dp"
+        android:layout_below="@id/d_name"
         android:layout_marginTop="6dp"
         android:textSize="18sp"
         android:layout_marginLeft="4dp"
@@ -126,34 +92,47 @@
         android:id="@+id/d_special"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/date_picker"
-        android:layout_marginLeft="23dp"
-        android:layout_marginTop="10dp"
+        android:layout_below="@id/spin"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="0dp"
         android:layout_toRightOf="@id/d_special_head"
-        android:hint="--------------"
+        android:hint=""
         android:paddingLeft="4dp"
         android:textColor="#000000"
         android:textSize="17dp" />
 
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/d_special_head"
+        android:layout_marginTop="10dp"
+        android:hint="Date"
+        android:textColor="#000000"
+        android:textSize="17dp"
+        android:paddingLeft="4dp"/>
+
+
+    <TextView
+        android:id="@+id/date_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/d_special_head"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="13dp"
+        android:layout_toRightOf="@id/date"
+        android:text="DD MM YYY" />
+
     <Button
         android:id="@+id/book"
         android:layout_below="@id/d_special_head"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="130dp"
+        android:layout_marginTop="50dp"
+        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#BA3C55"
         android:text="Book Appointment"
 
         />
-
-    <!--
-    Patient name
-    Patient Age
-    Gender
-    time date
-    Doctor Name
-    Doctor Specialist
-    -->
 
 </RelativeLayout>

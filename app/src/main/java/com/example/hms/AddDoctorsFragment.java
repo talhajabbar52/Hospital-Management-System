@@ -133,6 +133,7 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
         Gender = dcoGen.getText().toString().trim();
         specialist = Specialist.getSelectedItem().toString().trim();
         Integer Ages=Integer.parseInt(Age);
+
         if (Name.isEmpty()) {
             name.setError("Provide Name");
         } else if (Email.isEmpty()) {
