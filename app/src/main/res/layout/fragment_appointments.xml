@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/doctor"
@@ -20,7 +21,7 @@
         android:textColor="#000000"
         android:textSize="30sp"
         android:textStyle="bold|italic"
-        android:text="Appointment Book"
+        android:text="@string/appointment_book"
         />
 
     <EditText
@@ -29,10 +30,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/app_book"
         android:layout_marginTop="17dp"
-        android:hint="Patient Name"
+        android:hint="@string/patient_name"
         android:inputType="text"
         android:minHeight="48dp"
-        android:textColor="#000000"/>
+        android:textColor="#000000"
+        />
 
     <EditText
         android:id="@+id/P_age"
@@ -41,7 +43,7 @@
         android:layout_below="@id/P_name"
         android:inputType="text"
         android:minHeight="48dp"
-        android:hint="Patient Age"
+        android:hint="@string/patient_age"
         android:textColor="#000000"/>
 
     <EditText
@@ -51,7 +53,7 @@
         android:layout_below="@id/P_age"
         android:inputType="text"
         android:minHeight="48dp"
-        android:hint="Patient Gender"
+        android:hint="@string/patient_gender"
         android:textColor="#000000" />
 
     <TextView
@@ -61,20 +63,20 @@
         android:layout_below="@id/P_gender"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:hint="Doctor Name"
-        android:inputType="text"
+        android:text="@string/doctor_name"
         android:textColor="#000000"
-        android:textSize="17dp"
-        android:paddingLeft="4dp"/>
+        android:textSize="17sp"
+        android:paddingStart="4dp"
+        tools:ignore="RtlSymmetry" />
 
     <Spinner
         android:id="@+id/spin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/P_gender"
-        android:layout_marginLeft="13dp"
+        android:layout_marginStart="13dp"
         android:layout_marginTop="-8dp"
-        android:layout_toRightOf="@+id/d_name"
+        android:layout_toEndOf="@+id/d_name"
         android:minHeight="5dp" />
 
     <TextView
@@ -84,8 +86,8 @@
         android:layout_below="@id/d_name"
         android:layout_marginTop="6dp"
         android:textSize="18sp"
-        android:layout_marginLeft="4dp"
-        android:hint="Doctor Specialist"
+        android:layout_marginStart="4dp"
+        android:text="@string/doctor_specialist"
         android:textColor="#000000" />
 
     <TextView
@@ -93,13 +95,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/spin"
-        android:layout_marginLeft="21dp"
+        android:layout_marginStart="21dp"
         android:layout_marginTop="0dp"
-        android:layout_toRightOf="@id/d_special_head"
-        android:hint=""
-        android:paddingLeft="4dp"
+        android:layout_toEndOf="@id/d_special_head"
+        android:paddingStart="4dp"
         android:textColor="#000000"
-        android:textSize="17dp" />
+        android:textSize="17sp"
+        tools:ignore="RtlSymmetry" />
 
     <TextView
         android:id="@+id/date"
@@ -107,10 +109,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/d_special_head"
         android:layout_marginTop="10dp"
-        android:hint="Date"
+        android:text="@string/date"
         android:textColor="#000000"
-        android:textSize="17dp"
-        android:paddingLeft="4dp"/>
+        android:textSize="17sp"
+        android:paddingStart="4dp"
+        tools:ignore="RtlSymmetry" />
 
 
     <TextView
@@ -118,10 +121,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/d_special_head"
-        android:layout_marginLeft="26dp"
+        android:layout_marginStart="26dp"
         android:layout_marginTop="13dp"
-        android:layout_toRightOf="@id/date"
-        android:text="DD MM YYY" />
+        android:layout_toEndOf="@id/date"
+        android:text="@string/dd_mm_yyy" />
 
     <Button
         android:id="@+id/book"
@@ -132,6 +135,6 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="50dp"
         android:backgroundTint="#BA3C55"
-        android:text="Book Appointment" />
+        android:text="@string/book_appointment" />
 
 </RelativeLayout>

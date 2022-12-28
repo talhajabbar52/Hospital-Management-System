@@ -43,6 +43,7 @@
     <string name="jan_01_2020">Jan 01 2020</string>
     <string name="doctor_specialist">Doctor Specialist</string>
     <string name="book_appointment">Book Appointment</string>
+    <string name="dd_mm_yyy">DD MM YYY</string>
 
 
     <string-array name="Specialist">
