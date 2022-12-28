@@ -125,14 +125,13 @@
 
     <Button
         android:id="@+id/book"
-        android:layout_below="@id/d_special_head"
-        android:layout_marginTop="50dp"
-        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#BA3C55"
-        android:text="Book Appointment"
+        android:layout_below="@id/d_special_head"
 
-        />
+        android:layout_centerInParent="true"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="#BA3C55"
+        android:text="Book Appointment" />
 
 </RelativeLayout>

@@ -17,7 +17,5 @@ public class AddDoctors {
 
     }
 
-    public AddDoctors(String name){
-        this.name = name;
-    }
+
 }

@@ -1,8 +1,6 @@
 package com.example.hms;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -11,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -27,20 +24,16 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.util.Objects;
+
 
 public class AppointmentFragment extends Fragment implements View.OnClickListener {
 
@@ -56,6 +49,9 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
     ArrayList<String> DocName,specialityList;
     ArrayAdapter<String> adapter;
     DatabaseReference reference;
+    DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
+
+    private int availableUser = 0;
 
 
     @SuppressLint("MissingInflatedId")
@@ -72,8 +68,8 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
         bookApp = v.findViewById(R.id.book);
         reference = FirebaseDatabase.getInstance().getReference("Doctor Info");
 
-        DocName = new ArrayList<String>();
-        adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item,DocName);
+        DocName = new ArrayList<>();
+        adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item,DocName);
         dName.setAdapter(adapter);
 
         fetchData();
@@ -82,6 +78,21 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
         mDisplayDate.setOnClickListener(this);
         bookApp.setOnClickListener(this);
 
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.hasChild("Appointment")) {
+
+                    availableUser = (int) snapshot.child("Appointment").getChildrenCount();
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
@@ -97,11 +108,15 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
             return v;
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.date_picker:
                 SelectDate();
+                break;
+            case R.id.book:
+                SaveDetails();
                 break;
         }
     }
@@ -122,6 +137,7 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
 
     private void fetchData()
     {
+
         specialityList = new ArrayList<>();
 
         listener = reference.addValueEventListener(new ValueEventListener() {
@@ -143,9 +159,9 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
         dName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                String Selected = DocName.get(position).toString();
+                String Selected = DocName.get(position);
                 Log.e("Clicked:","" + Selected);
-                String Speciality = specialityList.get(position).toString();
+                String Speciality = specialityList.get(position);
                 DSpecialist.setText(Speciality);
             }
 
@@ -156,6 +172,41 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
     }
 
     private void SaveDetails() {
+
+        String name,age,gender,date,specialist,docName ;
+
+        name = PName.getText().toString().trim();
+        age = PAge.getText().toString().trim();
+        gender = PGender.getText().toString().trim();
+        specialist = DSpecialist.getText().toString().trim();
+        docName = dName.getSelectedItem().toString().trim();
+        date = mDisplayDate.getText().toString().trim();
+
+
+        if (name.isEmpty()){
+            PName.setError("Enter Name");
+
+        }
+        else {
+
+            Appointment appointment = new Appointment(name,age,gender,date,specialist,docName);
+
+
+            myRef.child("Appointment").child(String.valueOf(availableUser+1)).child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(appointment).addOnCompleteListener(new OnCompleteListener<Void>() {
+               @Override
+               public void onComplete(@NonNull Task<Void> task) {
+                   if (task.isSuccessful()){
+                       Toast.makeText(getActivity(), "Appointment Booked", Toast.LENGTH_SHORT).show();
+                   }
+                   else    {
+                       Toast.makeText(getActivity(), "Failed", Toast.LENGTH_SHORT).show();
+                   }
+
+
+               }
+           });
+        }
+
 
     }
 }
