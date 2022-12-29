@@ -1,6 +1,7 @@
 package com.example.hms;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -83,6 +84,8 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
 
             }
         });
+
+
 
         return v;
     }

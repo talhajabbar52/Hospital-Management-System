@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText edt_Username, edt_pass;
     Button btn_user, btn_admin;
     TextView register;
+    ProgressBar bar;
     private FirebaseAuth mAuth;
 
     @Override
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_user = findViewById(R.id.user_btn);
         btn_admin = findViewById(R.id.admin_btn);
         register = findViewById(R.id.newAccount);
+        bar = findViewById(R.id.pBar);
         mAuth = FirebaseAuth.getInstance();
 
         btn_user.setOnClickListener(this);
@@ -79,14 +82,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             edt_pass.setError("Incorrect Password");
             edt_pass.requestFocus();
         } else {
+            bar.setVisibility(View.VISIBLE);
             mAuth.signInWithEmailAndPassword(adminEmail, adminPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                        bar.setVisibility(View.GONE);
                         startActivity(new Intent(MainActivity.this, AdminPanelActivity.class));
                     } else {
                         Toast.makeText(MainActivity.this, "Login Unsuccessful" + task.getException(), Toast.LENGTH_SHORT).show();
+                        bar.setVisibility(View.GONE);
                     }
 
 
@@ -104,15 +110,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (pass.isEmpty()) {
             edt_pass.setError("Password is Required");
         } else {
+            bar.setVisibility(View.VISIBLE);
             mAuth.signInWithEmailAndPassword(user, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
                         Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                        bar.setVisibility(View.GONE);
                         startActivity(new Intent(MainActivity.this, UserPanelActivity.class));
 
                     } else {
                         Toast.makeText(MainActivity.this, "Login Failed" + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                        bar.setVisibility(View.GONE);
                     }
                 }
             });

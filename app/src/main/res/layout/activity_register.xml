@@ -100,11 +100,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/age" />
+
 
             <EditText
 
@@ -178,6 +174,13 @@
 
                 tools:ignore="ButtonStyle"
 
+                />
+            <ProgressBar
+                android:id="@+id/pBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                style="?android:attr/progressBarStyleLarge"
                 />
 
             <TextView

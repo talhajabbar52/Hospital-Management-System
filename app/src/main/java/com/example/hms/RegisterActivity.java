@@ -12,6 +12,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     Button register;
     private RadioButton male, female;
     TextView banner;
+    ProgressBar bar;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -51,6 +53,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         register = findViewById(R.id.Register_btn);
         male = findViewById(R.id.male);
         female = findViewById(R.id.female);
+        bar=findViewById(R.id.pBar);
 
         //function implements
 
@@ -143,6 +146,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             phone.setError("Phone no required");
         }
         else {
+            bar.setVisibility(View.VISIBLE);
             mAuth.createUserWithEmailAndPassword(Email, Pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -156,11 +160,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(RegisterActivity.this, "Registration Successful", Toast.LENGTH_LONG).show();
+                                    bar.setVisibility(View.GONE);
                                     startActivity(new Intent(RegisterActivity.this, MainActivity.class));
 
 
                                 } else {
                                     Toast.makeText(RegisterActivity.this, "Registration Failed", Toast.LENGTH_LONG).show();
+                                    bar.setVisibility(View.GONE);
 
                                 }
                             }
@@ -170,6 +176,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     } else {
 
                         Toast.makeText(RegisterActivity.this, "Registration Failed ", Toast.LENGTH_LONG).show();
+                        bar.setVisibility(View.GONE);
 
                     }
                 }
