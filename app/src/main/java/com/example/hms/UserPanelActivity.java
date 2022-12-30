@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -50,6 +51,10 @@ public class UserPanelActivity extends AppCompatActivity implements NavigationVi
 
             case R.id.nav_doctor_timetable:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DoctorTimetableFragment()).commit();
+                break;
+
+            case R.id.nav_Logout:
+
                 break;
         }
 
