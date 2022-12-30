@@ -2,7 +2,6 @@ package com.example.hms;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,14 +11,10 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.Objects;
 
 
@@ -33,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         edt_Username = findViewById(R.id.edt_txt_user);
         edt_pass = findViewById(R.id.edt_txt_user_pass);
@@ -41,13 +37,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         register = findViewById(R.id.newAccount);
         bar = findViewById(R.id.pBar);
         mAuth = FirebaseAuth.getInstance();
-
         btn_user.setOnClickListener(this);
         register.setOnClickListener(this);
         btn_admin.setOnClickListener(this);
 
 
     }
+
+
+
 
     @SuppressLint("NonConstantResourceId")
     @Override

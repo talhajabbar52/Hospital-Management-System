@@ -60,6 +60,7 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_appointments, container, false);
 
+
         PName = v.findViewById(R.id.P_name);
         PAge = v.findViewById(R.id.P_age);
         PGender = v.findViewById(R.id.P_gender);
@@ -147,6 +148,7 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
                     DocName.add(String.valueOf(items.child("name").getValue()));
                     specialityList.add(String.valueOf(items.child("Specialist").getValue()));
                     adapter.notifyDataSetChanged();
+
                 }
             }
 
@@ -192,7 +194,7 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
             Appointment appointment = new Appointment(name,age,gender,date,specialist,docName);
 
 
-            myRef.child("Appointment").child(String.valueOf(availableUser+1)).child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(appointment).addOnCompleteListener(new OnCompleteListener<Void>() {
+            myRef.child("Appointment").child(String.valueOf(availableUser+1)).child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).setValue(appointment).addOnCompleteListener(new OnCompleteListener<Void>() {
                @Override
                public void onComplete(@NonNull Task<Void> task) {
                    if (task.isSuccessful()){

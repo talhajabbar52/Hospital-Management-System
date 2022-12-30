@@ -63,6 +63,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
+
+
     @SuppressLint("NonConstantResourceId")
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?

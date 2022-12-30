@@ -10,7 +10,10 @@
     android:padding="10dp"
     android:gravity="center"
     tools:context=".MainActivity"
-    tools:theme="@style/Theme.HMS.NoActionBar">
+    android:theme="@style/Theme.AppCompat.NoActionBar"
+
+
+    >
 
     <TextView
         android:layout_width="match_parent"
