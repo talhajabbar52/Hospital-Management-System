@@ -1,10 +1,13 @@
 package com.example.hms;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +18,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.Objects;
 
 
@@ -41,6 +46,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         register.setOnClickListener(this);
         btn_admin.setOnClickListener(this);
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // User is signed in
+            Intent i = new Intent(MainActivity.this, UserPanelActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            String cancel = "Go";
+            i.putExtra("Logged In", cancel);
+            startActivity(i);
+        } else {
+            // User is signed out
+            Log.d(TAG, "onAuthStateChanged:signed_out");
+        }
+        Intent intent = getIntent();
+        intent.getExtras();
+
+        if(intent.hasExtra("Signed Out"))
+        {
+            Toast.makeText(this, "Signed Out", Toast.LENGTH_SHORT).show();
+        }
+
 
     }
 
@@ -66,6 +91,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void adminLogin() {
+
+
+
 
         //admin email=admintalha@hms.com
         //admin pass=admin1234
@@ -100,6 +128,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void login() {
+
+
         String user = edt_Username.getText().toString().trim();
         String pass = edt_pass.getText().toString().trim();
         if (user.isEmpty()) {
@@ -115,7 +145,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if (task.isSuccessful()) {
                         Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         bar.setVisibility(View.GONE);
-                        startActivity(new Intent(MainActivity.this, UserPanelActivity.class));
+                        Intent intent = new Intent(MainActivity.this, UserPanelActivity.class);
+                       intent.putExtra("user", user);
+                        startActivity(intent);
 
                     } else {
                         Toast.makeText(MainActivity.this, "Login Failed" + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();

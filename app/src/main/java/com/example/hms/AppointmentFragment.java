@@ -108,6 +108,7 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
         };
             return v;
     }
+    
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -211,4 +212,5 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
 
 
     }
+
 }
