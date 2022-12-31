@@ -67,9 +67,11 @@ public class ReportsFragment extends Fragment{
 
     private void showData() {
 
+
+
         user = FirebaseAuth.getInstance().getCurrentUser();
         uid = user.getUid();
-        reference = FirebaseDatabase.getInstance().getReference("Appointment");
+        reference = FirebaseDatabase.getInstance().getReference("Appointment").child(uid);
 
         PName = new ArrayList<>();
         adapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,PName);
@@ -99,12 +101,12 @@ public class ReportsFragment extends Fragment{
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot ds : snapshot.getChildren()){
-                    PName.add(String.valueOf(snapshot.child(uid).child("name").getValue()));
-                    PAge.add(String.valueOf(snapshot.child(uid).child("age").getValue()));
-                    PGender.add(String.valueOf(snapshot.child(uid).child("gender").getValue()));
-                    DName.add(String.valueOf(snapshot.child(uid).child("docName").getValue()));
-                    DSpecialist.add(String.valueOf(snapshot.child(uid).child("specialist").getValue()));
-                    App_Date.add(String.valueOf(snapshot.child(uid).child("date").getValue()));
+                    PName.add(String.valueOf(ds.child("name").getValue()));
+                    PAge.add(String.valueOf(ds.child("age").getValue()));
+                    PGender.add(String.valueOf(ds.child("gender").getValue()));
+                    DName.add(String.valueOf(ds.child("docName").getValue()));
+                    DSpecialist.add(String.valueOf(ds.child("specialist").getValue()));
+                    App_Date.add(String.valueOf(ds.child("date").getValue()));
 
                     adapter2.notifyDataSetChanged();
                     adapter6.notifyDataSetChanged();

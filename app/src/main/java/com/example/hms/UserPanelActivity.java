@@ -44,6 +44,7 @@ public class UserPanelActivity extends AppCompatActivity implements NavigationVi
         email= header.findViewById(R.id.email);
         Intent intent=getIntent();
         String emails = intent.getStringExtra("user");
+
         email.setText(emails);
 
 
@@ -55,9 +56,21 @@ public class UserPanelActivity extends AppCompatActivity implements NavigationVi
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AppointmentFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_appointment);
         }
+        Intent i = getIntent();
+        i.getExtras();
+
+        if (i.hasExtra("Logged In"))
+        {
+
+            Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show();
+
+        }
 
 
     }
+
+
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

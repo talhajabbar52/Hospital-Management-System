@@ -108,7 +108,8 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
         };
             return v;
     }
-    
+
+
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -196,7 +197,7 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
         else {
 
 
-            myRef.child("Appointment").child(String.valueOf(availableUser+1)).child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).setValue(appointment).addOnCompleteListener(new OnCompleteListener<Void>() {
+            myRef.child("Appointment").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child(String.valueOf(availableUser+1)).setValue(appointment).addOnCompleteListener(new OnCompleteListener<Void>() {
                @Override
                public void onComplete(@NonNull Task<Void> task) {
                    if (task.isSuccessful()){
