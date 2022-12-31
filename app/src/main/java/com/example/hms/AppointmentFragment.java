@@ -185,14 +185,15 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
         docName = dName.getSelectedItem().toString().trim();
         date = mDisplayDate.getText().toString().trim();
 
+        Appointment appointment = new Appointment(name,age,gender,docName,specialist,date);
 
         if (name.isEmpty()){
-            PName.setError("Enter Name");
-
+            PName.setError("Enter Patient Name");
+        }
+        else if (age.isEmpty()) {
+            PAge.setError("Enter Patient Age");
         }
         else {
-
-            Appointment appointment = new Appointment(name,age,gender,date,specialist,docName);
 
 
             myRef.child("Appointment").child(String.valueOf(availableUser+1)).child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).setValue(appointment).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -208,6 +209,19 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
 
                }
            });
+
+
+//            myRef.child("Appointment").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).setValue(appointment).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                @Override
+//                public void onComplete(@NonNull Task<Void> task) {
+//                    if (task.isSuccessful()){
+//                        Toast.makeText(getActivity(), "Appointment Booked", Toast.LENGTH_SHORT).show();
+//                    }
+//                    else    {
+//                        Toast.makeText(getActivity(), "Failed", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            });
         }
 
 

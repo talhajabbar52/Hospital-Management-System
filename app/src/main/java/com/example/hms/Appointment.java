@@ -1,17 +1,19 @@
 package com.example.hms;
 
 public class Appointment {
+    public String name,age,gender,docName,specialist,date;
 
-   public String name,age,gender,date,specialist,docName ;
 
-    public Appointment() {}
+    public Appointment() {
 
-    public Appointment(String name, String age, String gender, String date, String specialist, String docName) {
+    }
+
+    public Appointment(String name, String age, String gender, String docName, String specialist, String date) {
         this.name = name;
         this.age = age;
         this.gender = gender;
-        this.date = date;
-        this.specialist = specialist;
         this.docName = docName;
+        this.specialist = specialist;
+        this.date = date;
     }
 }
