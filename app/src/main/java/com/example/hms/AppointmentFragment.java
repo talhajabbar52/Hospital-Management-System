@@ -42,8 +42,8 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     EditText PName,PAge,PGender;
-    Spinner dName;
-    TextView DSpecialist;
+    Spinner DSpecialist;
+    TextView dName;
     Button bookApp;
     ValueEventListener listener;
     ArrayList<String> DocName,specialityList;
@@ -63,15 +63,14 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
 
         PName = v.findViewById(R.id.P_name);
         PAge = v.findViewById(R.id.P_age);
-        PGender = v.findViewById(R.id.P_gender);
-        dName = v.findViewById(R.id.spin);
-        DSpecialist = v.findViewById(R.id.d_special);
+        DSpecialist = v.findViewById(R.id.spin);
+        dName = v.findViewById(R.id.doc_name);
         bookApp = v.findViewById(R.id.book);
         reference = FirebaseDatabase.getInstance().getReference("Doctor Info");
 
-        DocName = new ArrayList<>();
-        adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item,DocName);
-        dName.setAdapter(adapter);
+        specialityList = new ArrayList<>();
+        adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item,specialityList);
+        DSpecialist.setAdapter(adapter);
 
         fetchData();
 
@@ -141,14 +140,14 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
     private void fetchData()
     {
 
-        specialityList = new ArrayList<>();
+        DocName = new ArrayList<>();
 
         listener = reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot items : snapshot.getChildren()){
-                    DocName.add(String.valueOf(items.child("name").getValue()));
                     specialityList.add(String.valueOf(items.child("Specialist").getValue()));
+                    DocName.add(String.valueOf(items.child("name").getValue()));
                     adapter.notifyDataSetChanged();
 
                 }
@@ -160,13 +159,13 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
             }
         });
 
-        dName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        DSpecialist.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                String Selected = DocName.get(position);
+                String Selected = specialityList.get(position);
                 Log.e("Clicked:","" + Selected);
-                String Speciality = specialityList.get(position);
-                DSpecialist.setText(Speciality);
+                String doctor_name = DocName.get(position);
+                dName.setText(doctor_name);
             }
 
             @Override
@@ -182,8 +181,8 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
         name = PName.getText().toString().trim();
         age = PAge.getText().toString().trim();
         gender = PGender.getText().toString().trim();
-        specialist = DSpecialist.getText().toString().trim();
-        docName = dName.getSelectedItem().toString().trim();
+        docName = dName.getText().toString().trim();
+        specialist = DSpecialist.getSelectedItem().toString().trim();
         date = mDisplayDate.getText().toString().trim();
 
         Appointment appointment = new Appointment(name,age,gender,docName,specialist,date);
@@ -195,7 +194,6 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
             PAge.setError("Enter Patient Age");
         }
         else {
-
 
             myRef.child("Appointment").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child(String.valueOf(availableUser+1)).setValue(appointment).addOnCompleteListener(new OnCompleteListener<Void>() {
                @Override

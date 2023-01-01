@@ -64,19 +64,38 @@
 
         <EditText
             android:id="@+id/DocAge"
-            android:layout_width="370dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/age"
             android:inputType="number"
             android:minHeight="48dp"
             android:textColor="#000000" />
 
-        <EditText
+        <RadioGroup
             android:id="@+id/txtDocGen"
-            android:layout_width="370dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:hint="@string/gender"
-            android:minHeight="48dp" />
+            android:weightSum="1"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="-45dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:text="Male"
+                android:id="@+id/male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <RadioButton
+                android:id="@+id/female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="Female" />
+        </RadioGroup>
+
 
 
        <!-- <LinearLayout
@@ -112,6 +131,8 @@
             android:hint="Specialist"
             android:inputType="text"
             android:textSize="17dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="2dp"
             android:textColor="#000000"
             />
 
@@ -119,6 +140,7 @@
             android:layout_marginLeft="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:id="@+id/DocSpecialist"
 
             />
