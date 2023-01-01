@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -27,10 +28,10 @@ import com.google.firebase.database.ValueEventListener;
 
 
 public class AddDoctorsFragment extends Fragment implements View.OnClickListener {
-    EditText name, email, phone, age, dcoGen;
+    EditText name, email, phone, age;
     RadioButton male, female;
     Spinner Specialist;
-    String gender;
+    String uGender;
     Button btnSave;
     String DocSpecialist;
     private int availableUser = 0;
@@ -50,7 +51,26 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
         female = v.findViewById(R.id.female);
         Specialist = v.findViewById(R.id.DocSpecialist);
         btnSave = v.findViewById(R.id.btnAddDco);
-        dcoGen = v.findViewById(R.id.txtDocGen);
+
+
+        RadioGroup gender= v.findViewById(R.id.docGen);
+
+        gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId){
+                    case R.id.male:
+                        female.setChecked(false);
+                        uGender = "Male";
+                        break;
+                    case R.id.female:
+                        male.setChecked(false);
+                        uGender="Female";
+
+                }
+            }
+        });
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(), R.array.Specialist, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         btnSave.setOnClickListener(this);
@@ -93,33 +113,8 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
     }
 
 
-    @SuppressLint("NonConstantResourceId")
-    public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
 
-        // Check which radio button was clicked
-        switch (view.getId()) {
-            case R.id.male:
-                if (checked) {
-                    female.setChecked(false);
-                    gender = "Male";
 
-                    break;
-                } else {
-                    female.setError("Select Gender");
-                }
-
-            case R.id.female:
-                if (checked) {
-                    male.setChecked(false);
-                    gender = "female";
-                    break;
-                } else {
-                    female.setError("Select Gender");
-                }
-        }
-    }
 
 
     @Override
@@ -135,7 +130,7 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
         Email = email.getText().toString().trim();
         Phone = phone.getText().toString().trim();
         Age = age.getText().toString().trim();
-        Gender = dcoGen.getText().toString().trim();
+        Gender = uGender.trim();
         specialist = Specialist.getSelectedItem().toString().trim();
         Integer Ages=Integer.parseInt(Age);
 

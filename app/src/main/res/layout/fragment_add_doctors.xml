@@ -72,7 +72,7 @@
             android:textColor="#000000" />
 
         <RadioGroup
-            android:id="@+id/txtDocGen"
+            android:id="@+id/docGen"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:weightSum="1"
@@ -92,7 +92,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checked="true"
                 android:text="Female" />
         </RadioGroup>
 

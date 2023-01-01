@@ -14,6 +14,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +42,7 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
     private static final String TAG = "AppointmentFragment";
     private TextView mDisplayDate;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
+    RadioButton male,female;
 
     EditText PName,PAge,PGender;
     Spinner DSpecialist;
@@ -50,6 +53,7 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
     ArrayAdapter<String> adapter;
     DatabaseReference reference;
     DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
+    String uGender;
 
     private int availableUser = 0;
 
@@ -66,6 +70,8 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
         DSpecialist = v.findViewById(R.id.spin);
         dName = v.findViewById(R.id.doc_name);
         bookApp = v.findViewById(R.id.book);
+        male = v.findViewById(R.id.male);
+        female = v.findViewById(R.id.female);
         reference = FirebaseDatabase.getInstance().getReference("Doctor Info");
 
         specialityList = new ArrayList<>();
@@ -77,6 +83,23 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
         mDisplayDate = v.findViewById(R.id.date_picker);
         mDisplayDate.setOnClickListener(this);
         bookApp.setOnClickListener(this);
+
+        final RadioGroup[] gender = {(RadioGroup) v.findViewById(R.id.P_gender)};
+        gender[0].setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId){
+                    case R.id.male:
+                        female.setChecked(false);
+                        uGender = "Male";
+                        break;
+                    case R.id.female:
+                        male.setChecked(false);
+                        uGender="Female";
+
+                }
+            }
+        });
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -180,7 +203,7 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
 
         name = PName.getText().toString().trim();
         age = PAge.getText().toString().trim();
-        gender = PGender.getText().toString().trim();
+        gender = uGender.trim();
         docName = dName.getText().toString().trim();
         specialist = DSpecialist.getSelectedItem().toString().trim();
         date = mDisplayDate.getText().toString().trim();

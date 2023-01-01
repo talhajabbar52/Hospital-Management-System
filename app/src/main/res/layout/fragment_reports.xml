@@ -33,14 +33,16 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingRight="55dp"
+                        android:paddingRight="50dp"
+                        android:paddingLeft="10dp"
                         android:textColor="@color/white"
                         android:text="Patient Name" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingRight="55dp"
+                        android:paddingRight="50dp"
+                        android:paddingLeft="10dp"
                         android:textColor="@color/white"
                         android:text="Patient Age" />
 
@@ -48,27 +50,31 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
-                        android:paddingRight="55dp"
+                        android:paddingRight="50dp"
+                        android:paddingLeft="10dp"
                         android:text="Patient Gender" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:textColor="@color/white"
                         android:layout_height="wrap_content"
-                        android:paddingRight="55dp"
+                        android:paddingRight="50dp"
+                        android:paddingLeft="10dp"
                         android:text="Doctor Name" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
-                        android:paddingRight="55dp"
+                        android:paddingRight="50dp"
+                        android:paddingLeft="10dp"
                         android:text="Doctor Speciality" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingRight="55dp"
+                        android:paddingRight="5dp"
+                        android:paddingLeft="10dp"
                         android:textColor="@color/white"
                         android:text="Appointment Date" />
                 </TableRow>
