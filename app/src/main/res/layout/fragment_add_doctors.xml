@@ -62,35 +62,46 @@
             android:minHeight="48dp"
             android:textColor="#040404" />
 
+        <ImageView
+            android:id="@+id/img"
+            android:layout_marginTop="10dp"
+            android:layout_width="24dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="24dp"
+            android:src="@drawable/age"/>
+
         <EditText
             android:id="@+id/DocAge"
-            android:layout_width="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="-37dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:hint="@string/age"
             android:inputType="number"
-            android:minHeight="48dp"
             android:textColor="#000000" />
 
         <RadioGroup
             android:id="@+id/docGen"
-            android:layout_width="150dp"
+            android:layout_width="190dp"
             android:layout_height="wrap_content"
-            android:weightSum="1"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="130dp"
             android:layout_marginTop="-45dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="1">
 
             <RadioButton
-                android:text="Male"
                 android:id="@+id/male"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:drawableStart="@drawable/ic_male"
+                android:text="Male" />
 
             <RadioButton
                 android:id="@+id/female"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_femlae"
                 android:layout_weight="1"
                 android:text="Female" />
         </RadioGroup>
@@ -128,6 +139,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Specialist"
+            android:drawableStart="@drawable/ic_speciality"
             android:inputType="text"
             android:textSize="17dp"
             android:layout_marginTop="5dp"

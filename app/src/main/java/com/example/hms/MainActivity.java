@@ -6,11 +6,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +49,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_user.setOnClickListener(this);
         register.setOnClickListener(this);
         btn_admin.setOnClickListener(this);
+
+        ImageView see = findViewById(R.id.see);
+        see.setImageResource(R.drawable.ic_hidepass);
+        see.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (edt_pass.getTransformationMethod().equals(HideReturnsTransformationMethod.getInstance())){
+                    edt_pass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    see.setImageResource(R.drawable.ic_hidepass);
+                }
+                else{
+                    edt_pass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    see.setImageResource(R.drawable.ic_seepass);
+                }
+            }
+        });
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null ) {
@@ -125,8 +145,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void login() {
-
-
         String user = edt_Username.getText().toString().trim();
         String pass = edt_pass.getText().toString().trim();
         if (user.isEmpty()) {

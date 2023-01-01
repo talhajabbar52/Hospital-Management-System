@@ -32,12 +32,22 @@
         android:layout_marginTop="17dp"
         android:hint="@string/patient_name"
         android:inputType="text"
+        android:drawableStart="@drawable/ic_person"
         android:minHeight="48dp"
         android:textColor="#000000"
         />
 
+    <ImageView
+        android:id="@+id/img"
+        android:layout_marginTop="15dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_below="@+id/P_name"
+        android:src="@drawable/age"/>
+
     <EditText
         android:id="@+id/P_age"
+        android:layout_toRightOf="@+id/img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/P_name"
@@ -47,33 +57,36 @@
         android:textColor="#000000"/>
 
 
-
     <RadioGroup
         android:id="@+id/P_gender"
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/P_age"
         android:layout_below="@id/P_name"
-        android:weightSum="1"
         android:layout_marginLeft="15dp"
-        android:orientation="horizontal">
+        android:layout_marginTop="2dp"
+        android:layout_toRightOf="@+id/P_age"
+        android:orientation="horizontal"
+        android:weightSum="1">
 
         <RadioButton
-            android:text="Male"
             android:id="@+id/male"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="15sp"/>
+            android:drawableStart="@drawable/ic_male"
+            android:text="Male"
+            android:textSize="15sp" />
 
         <RadioButton
             android:id="@+id/female"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:drawableStart="@drawable/ic_femlae"
             android:text="Female"
-            android:textSize="15sp"/>
+            android:textSize="15sp" />
     </RadioGroup>
+
 
     <TextView
         android:id="@+id/d_special_head"
@@ -82,6 +95,7 @@
         android:layout_below="@+id/P_gender"
         android:layout_marginTop="6dp"
         android:textSize="18sp"
+        android:drawableStart="@drawable/ic_speciality"
         android:layout_marginStart="4dp"
         android:text="@string/doctor_specialist"
         android:textColor="#000000" />
@@ -105,6 +119,7 @@
         android:layout_marginBottom="5dp"
         android:text="@string/doctor_name"
         android:textColor="#000000"
+        android:drawableStart="@drawable/ic_person"
         android:textSize="17sp"
         android:layout_below="@+id/d_special_head"
         android:paddingStart="4dp"
@@ -118,6 +133,7 @@
         android:layout_marginStart="21dp"
         android:layout_toEndOf="@id/d_name"
         android:paddingStart="4dp"
+        android:layout_marginTop="1dp"
         android:text=""
         android:textColor="#000000"
         android:textSize="17sp"
@@ -131,10 +147,10 @@
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="264dp"
+            android:drawableStart="@drawable/ic_date"
             android:text="@string/date"
             android:textColor="#000000"
-            android:paddingTop="252dp"
             android:textSize="17sp"
             android:paddingStart="4dp"
             tools:ignore="RtlSymmetry" />
@@ -144,7 +160,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="264dp"
             android:textSize="16dp"
             android:text="@string/dd_mm_yyy" />
 

@@ -8,10 +8,13 @@ import android.annotation.SuppressLint;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -40,6 +43,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
         mAuth = FirebaseAuth.getInstance();
         //Assigning object their ID's
         name = findViewById(R.id.txtUser);
@@ -54,6 +58,22 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         male = findViewById(R.id.male);
         female = findViewById(R.id.female);
         bar=findViewById(R.id.pBar);
+
+        ImageView see = findViewById(R.id.see1);
+        see.setImageResource(R.drawable.ic_hidepass);
+        see.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (pass.getTransformationMethod().equals(HideReturnsTransformationMethod.getInstance())){
+                    pass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    see.setImageResource(R.drawable.ic_hidepass);
+                }
+                else{
+                    pass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    see.setImageResource(R.drawable.ic_seepass);
+                }
+            }
+        });
 
         //function implements
 
