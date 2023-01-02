@@ -13,6 +13,8 @@ public class AppointmentCheckFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_appointment_check, container, false);
+        View v = inflater.inflate(R.layout.fragment_appointment_check, container, false);
+
+        return v;
     }
 }

@@ -78,6 +78,22 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
         adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item,specialityList);
         DSpecialist.setAdapter(adapter);
 
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.hasChild("Appointment")) {
+
+                    availableUser = (int) snapshot.child("Appointment").getChildrenCount();
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         fetchData();
 
         mDisplayDate = v.findViewById(R.id.date_picker);
@@ -113,8 +129,6 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
         };
             return v;
     }
-
-
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -200,7 +214,7 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
             PAge.setError("Enter Patient Age");
         }
         else {
-            myRef.child("Appointment").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child(String.valueOf(availableUser++)).setValue(appointment).addOnCompleteListener(new OnCompleteListener<Void>() {
+            myRef.child("Appointment").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child(String.valueOf(availableUser+1)).setValue(appointment).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()){

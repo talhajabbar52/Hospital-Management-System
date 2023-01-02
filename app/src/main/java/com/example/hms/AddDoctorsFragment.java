@@ -52,7 +52,6 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
         Specialist = v.findViewById(R.id.DocSpecialist);
         btnSave = v.findViewById(R.id.btnAddDco);
 
-
         RadioGroup gender= v.findViewById(R.id.docGen);
 
         gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -66,7 +65,6 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
                     case R.id.female:
                         male.setChecked(false);
                         uGender="Female";
-
                 }
             }
         });
@@ -80,7 +78,6 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 DocSpecialist = parent.getItemAtPosition(position).toString();
                 DocSpecialist = Specialist.getSelectedItem().toString().trim();
-
             }
 
             @Override
@@ -105,17 +102,8 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
             }
         });
 
-
-
-
-
         return v;
     }
-
-
-
-
-
 
     @Override
     public void onClick(View v) {
@@ -169,7 +157,6 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
             });
         }
     }
-
 }
 
 
