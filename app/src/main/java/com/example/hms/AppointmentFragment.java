@@ -101,23 +101,6 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
             }
         });
 
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.hasChild("Appointment")) {
-
-                    availableUser = (int) snapshot.child("Appointment").getChildrenCount();
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
@@ -217,36 +200,17 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
             PAge.setError("Enter Patient Age");
         }
         else {
-
-            myRef.child("Appointment").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child(String.valueOf(availableUser+1)).setValue(appointment).addOnCompleteListener(new OnCompleteListener<Void>() {
-               @Override
-               public void onComplete(@NonNull Task<Void> task) {
-                   if (task.isSuccessful()){
-                       Toast.makeText(getActivity(), "Appointment Booked", Toast.LENGTH_SHORT).show();
-                   }
-                   else    {
-                       Toast.makeText(getActivity(), "Failed", Toast.LENGTH_SHORT).show();
-                   }
-
-
-               }
-           });
-
-
-//            myRef.child("Appointment").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).setValue(appointment).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                @Override
-//                public void onComplete(@NonNull Task<Void> task) {
-//                    if (task.isSuccessful()){
-//                        Toast.makeText(getActivity(), "Appointment Booked", Toast.LENGTH_SHORT).show();
-//                    }
-//                    else    {
-//                        Toast.makeText(getActivity(), "Failed", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            });
+            myRef.child("Appointment").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child(String.valueOf(availableUser++)).setValue(appointment).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()){
+                        Toast.makeText(getActivity(), "Appointment Booked", Toast.LENGTH_SHORT).show();
+                    }
+                    else    {
+                        Toast.makeText(getActivity(), "Failed", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
-
-
     }
-
 }

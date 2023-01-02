@@ -4,108 +4,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <ScrollView
-        android:id="@+id/layout"
-        android:layout_height="match_parent"
-        android:scrollbars="horizontal|vertical"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_marginTop="2dip"
-        android:scrollbarStyle="outsideInset"
-        android:fillViewport="true">
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:background="#808080"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:text="Booked Appointments"/>
 
-        <HorizontalScrollView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:scrollbars="horizontal|vertical"
-            android:layout_marginTop="2dip">
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="2dp">
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#808080"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingRight="50dp"
-                        android:paddingLeft="10dp"
-                        android:textColor="@color/white"
-                        android:text="Patient Name" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingRight="50dp"
-                        android:paddingLeft="10dp"
-                        android:textColor="@color/white"
-                        android:text="Patient Age" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:paddingRight="50dp"
-                        android:paddingLeft="10dp"
-                        android:text="Patient Gender" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:textColor="@color/white"
-                        android:layout_height="wrap_content"
-                        android:paddingRight="50dp"
-                        android:paddingLeft="10dp"
-                        android:text="Doctor Name" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:paddingRight="50dp"
-                        android:paddingLeft="10dp"
-                        android:text="Doctor Speciality" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingRight="5dp"
-                        android:paddingLeft="10dp"
-                        android:textColor="@color/white"
-                        android:text="Appointment Date" />
-                </TableRow>
-                <TableRow>
-                    <ListView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/ad1"/>
-                    <ListView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/ad2"/>
-                    <ListView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/ad3"/>
-                    <ListView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/ad4"/>
-                    <ListView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/ad5"/>
-                    <ListView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/ad6"/>
-                </TableRow>
-            </TableLayout>
-        </HorizontalScrollView>
-    </ScrollView>
-
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#D3D3D3"
+        android:id="@+id/ad1"/>
 </LinearLayout>

@@ -16,4 +16,8 @@ public class Appointment {
         this.specialist = specialist;
         this.date = date;
     }
+
+    public String toString(){
+        return "\n Patient Name: " + this.name + "\n Patient Age: " + age + "\n Patient Gender: " + gender + "\n Doctor Name: " + docName + "\n Speciality: " + specialist + "\n Appointment Date: " + date;
+    }
 }

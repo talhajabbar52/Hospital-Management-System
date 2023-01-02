@@ -6,7 +6,7 @@ public class AddDoctors {
     public AddDoctors(){
 
     }
-    public AddDoctors(String name,String email, String  phone,String age,String gender,String Specialist)
+    public AddDoctors(String name,String email, String phone,String age,String gender,String Specialist)
     {
         this.name=name;
         this.email=email;
@@ -16,6 +16,4 @@ public class AddDoctors {
         this.Specialist=Specialist;
 
     }
-
-
 }
