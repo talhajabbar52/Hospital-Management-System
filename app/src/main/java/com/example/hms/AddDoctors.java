@@ -16,4 +16,8 @@ public class AddDoctors {
         this.Specialist=Specialist;
 
     }
+
+    public String toString(){
+        return "\n Patient Name: " + this.name + "\n Patient Age: " + email + "\n Patient Gender: " + phone + "\n Doctor Name: " + age + "\n Speciality: " + gender + "\n Appointment Date: " + Specialist;
+    }
 }

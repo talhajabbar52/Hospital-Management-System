@@ -53,7 +53,8 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
     private ArrayAdapter<String> adapter;
     private DatabaseReference reference;
     FirebaseDatabase rootNode;
-     DatabaseReference myRef;
+    DatabaseReference myRef,myRef2;
+    private int availableUser = 0;
 
     private String uGender;
 
@@ -78,9 +79,27 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
         rootNode= FirebaseDatabase.getInstance();
 
         myRef =rootNode.getReference("Appointment");
+        myRef2 =FirebaseDatabase.getInstance().getReference();
         specialityList = new ArrayList<>();
         adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item,specialityList);
         DSpecialist.setAdapter(adapter);
+
+
+        myRef2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.hasChild("Appointment Check")) {
+
+                    availableUser = (int) snapshot.child("Appointment Check").getChildrenCount();
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
         fetchData();
@@ -196,6 +215,7 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
         date = mDisplayDate.getText().toString().trim();
 
         Appointment appointment = new Appointment(name,age,gender,docName,specialist,date);
+        Check_App check_app = new Check_App(name,age,gender,docName,specialist,date);
 
         if (name.isEmpty()){
             PName.setError("Enter Patient Name");
@@ -212,6 +232,18 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
                     }
                     else    {
                         Toast.makeText(getActivity(), "Failed", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+
+            myRef2.child("Appointment Check").child(String.valueOf(availableUser+1)).setValue(check_app).addOnCompleteListener(new OnCompleteListener<Void>()  {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()){
+
+                    }
+                    else    {
                     }
                 }
             });

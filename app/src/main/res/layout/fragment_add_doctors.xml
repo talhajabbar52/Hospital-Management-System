@@ -62,30 +62,31 @@
             android:minHeight="48dp"
             android:textColor="#040404" />
 
-        <ImageView
-            android:id="@+id/img"
-            android:layout_marginTop="10dp"
-            android:layout_width="24dp"
-            android:layout_marginLeft="5dp"
-            android:layout_height="24dp"
-            android:src="@drawable/age"/>
-
         <EditText
             android:id="@+id/DocAge"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="-37dp"
             android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:hint="@string/age"
             android:inputType="number"
             android:textColor="#000000" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Gender: "
+            android:inputType="text"
+            android:textSize="19dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="2dp"
+            android:textColor="#000000"
+            />
+
         <RadioGroup
             android:id="@+id/docGen"
             android:layout_width="190dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="130dp"
-            android:layout_marginTop="-45dp"
+            android:layout_marginTop="-35dp"
+            android:layout_marginLeft="100dp"
             android:orientation="horizontal"
             android:weightSum="1">
 
@@ -105,7 +106,6 @@
                 android:layout_weight="1"
                 android:text="Female" />
         </RadioGroup>
-
 
 
        <!-- <LinearLayout

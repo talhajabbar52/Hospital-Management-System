@@ -49,14 +49,23 @@
         android:hint="@string/patient_age"
         android:textColor="#000000"/>
 
+    <TextView
+        android:id="@+id/gen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/P_age"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:textSize="18sp"
+        android:text="Gender: "
+        android:textColor="#000000" />
 
     <RadioGroup
         android:id="@+id/P_gender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/P_name"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="2dp"
+        android:layout_below="@id/P_age"
+        android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/P_age"
         android:orientation="horizontal"
         android:weightSum="1">
@@ -141,7 +150,7 @@
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="264dp"
+            android:layout_marginTop="310dp"
             android:drawableStart="@drawable/ic_date"
             android:paddingStart="4dp"
             android:text="@string/date"
@@ -154,7 +163,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="264dp"
+            android:layout_marginTop="310dp"
             android:text="@string/dd_mm_yyy"
             android:textSize="16dp" />
 

@@ -29,13 +29,8 @@ public class UserPanelActivity extends AppCompatActivity implements NavigationVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_panel);
 
-
-
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
 
         drawer = findViewById(R.id.drawer_outlay);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -69,8 +64,6 @@ public class UserPanelActivity extends AppCompatActivity implements NavigationVi
             Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show();
 
         }
-
-
     }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -94,7 +87,6 @@ public class UserPanelActivity extends AppCompatActivity implements NavigationVi
                 intent.putExtra("Signed Out", out);
                 startActivity(intent);
                 break;
-
         }
 
         drawer.closeDrawer(GravityCompat.START);
@@ -103,10 +95,12 @@ public class UserPanelActivity extends AppCompatActivity implements NavigationVi
 
     @Override
     public void onBackPressed(){
-        if (drawer.isDrawerOpen(GravityCompat.START)){
+        if (drawer.isDrawerOpen(GravityCompat.START))
+        {
             drawer.closeDrawer(GravityCompat.START);
         }
-        else{
+        else
+        {
             super.onBackPressed();
         }
     }

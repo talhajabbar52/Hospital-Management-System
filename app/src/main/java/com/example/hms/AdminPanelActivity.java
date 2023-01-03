@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class AdminPanelActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -56,6 +57,13 @@ public class AdminPanelActivity extends AppCompatActivity implements NavigationV
 
             case R.id.nav_appointment_check:
                 getSupportFragmentManager().beginTransaction().replace(R.id.Admin_fragment_container, new AppointmentCheckFragment()).commit();
+                break;
+            case R.id.nav_Admin_Logout:
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(AdminPanelActivity.this, MainActivity.class);
+                String out = "Signed Out";
+                intent.putExtra("Signed Out", out);
+                startActivity(intent);
                 break;
         }
 

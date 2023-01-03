@@ -31,21 +31,17 @@ public class ReportsFragment extends Fragment{
 
     private String uid;
     private FirebaseUser user;
-    private FirebaseDatabase firebaseDatabase;
-
 
     private DatabaseReference reference;
     private ListView listView;
 
     private ArrayList<String> arrayList;
     private ArrayAdapter<String> arrayAdapter;
-    private int available_user = 0;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_reports, container, false);
-
 
         listView = v.findViewById(R.id.ad1);
 
@@ -68,10 +64,8 @@ public class ReportsFragment extends Fragment{
         reference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//                for (DataSnapshot ds: snapshot.getChildren()){
                     arrayList.add(snapshot.getValue(Appointment.class).toString());
                     arrayAdapter.notifyDataSetChanged();
-//                }
             }
 
             @Override
@@ -94,7 +88,6 @@ public class ReportsFragment extends Fragment{
 
             }
         });
-
     }
 }
 

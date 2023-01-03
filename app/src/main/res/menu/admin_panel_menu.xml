@@ -14,6 +14,11 @@
             android:id="@+id/nav_appointment_check"
             android:icon="@drawable/ic_appointments_check"
             android:title="Check Appointments" />
+
+        <item
+            android:id="@+id/nav_Admin_Logout"
+            android:icon="@drawable/ic_logout"
+            android:title="Logout" />
     </group>
 
 </menu>
