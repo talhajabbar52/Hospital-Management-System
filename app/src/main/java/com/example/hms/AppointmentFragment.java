@@ -42,20 +42,22 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
     private static final String TAG = "AppointmentFragment";
     private TextView mDisplayDate;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
-    RadioButton male,female;
+    private RadioButton male,female;
 
-    EditText PName,PAge,PGender;
-    Spinner DSpecialist;
-    TextView dName;
+    private EditText PName,PAge;
+    private Spinner DSpecialist;
+    private  TextView dName;
     Button bookApp;
     ValueEventListener listener;
-    ArrayList<String> DocName,specialityList;
-    ArrayAdapter<String> adapter;
-    DatabaseReference reference;
-    DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
-    String uGender;
+    private ArrayList<String> DocName,specialityList;
+    private ArrayAdapter<String> adapter;
+    private DatabaseReference reference;
+    FirebaseDatabase rootNode;
+     DatabaseReference myRef;
 
-    private int availableUser = 0;
+    private String uGender;
+
+
 
 
     @SuppressLint("MissingInflatedId")
@@ -73,26 +75,13 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
         male = v.findViewById(R.id.male);
         female = v.findViewById(R.id.female);
         reference = FirebaseDatabase.getInstance().getReference("Doctor Info");
+        rootNode= FirebaseDatabase.getInstance();
 
+        myRef =rootNode.getReference("Appointment");
         specialityList = new ArrayList<>();
         adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item,specialityList);
         DSpecialist.setAdapter(adapter);
 
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.hasChild("Appointment")) {
-
-                    availableUser = (int) snapshot.child("Appointment").getChildrenCount();
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
         fetchData();
 
@@ -196,6 +185,7 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
 
     private void SaveDetails() {
 
+
         String name,age,gender,date,specialist,docName ;
 
         name = PName.getText().toString().trim();
@@ -214,7 +204,7 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
             PAge.setError("Enter Patient Age");
         }
         else {
-            myRef.child("Appointment").child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child(String.valueOf(availableUser+1)).setValue(appointment).addOnCompleteListener(new OnCompleteListener<Void>() {
+            myRef.child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).child(String.valueOf(System.currentTimeMillis())).setValue(appointment).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()){

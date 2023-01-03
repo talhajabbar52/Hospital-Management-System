@@ -61,6 +61,10 @@ public class UserPanelActivity extends AppCompatActivity implements NavigationVi
 
         if (i.hasExtra("Logged In"))
         {
+            Intent intents=getIntent();
+            String em = intent.getStringExtra("user");
+
+            email.setText(em);
 
             Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show();
 
@@ -68,10 +72,6 @@ public class UserPanelActivity extends AppCompatActivity implements NavigationVi
 
 
     }
-
-
-
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
