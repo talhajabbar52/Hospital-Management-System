@@ -85,6 +85,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             Toast.makeText(this, "Signed Out", Toast.LENGTH_SHORT).show();
         }
+        if (user != null ) {
+            // User is signed in
+            Intent i = new Intent(MainActivity.this, AdminPanelActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            String cancel = "Go";
+            i.putExtra("SignIn", cancel);
+            startActivity(i);
+        } else {
+            // User is signed out
+            Log.d(TAG, "onAuthStateChanged:signed_out");
+        }
+        Intent intents = getIntent();
+        intents.getExtras();
+
+        if(intents.hasExtra("Signed Out"))
+        {
+            Toast.makeText(this, "Signed Out", Toast.LENGTH_SHORT).show();
+        }
 
 
     }

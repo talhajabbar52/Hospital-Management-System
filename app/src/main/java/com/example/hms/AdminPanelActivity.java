@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -44,6 +45,12 @@ public class AdminPanelActivity extends AppCompatActivity implements NavigationV
         if (savedInstanceState == null){
             getSupportFragmentManager().beginTransaction().replace(R.id.Admin_fragment_container, new AddDoctorsFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_add_doctors);
+            Intent i = getIntent();
+            i.getExtras();
+            if (i.hasExtra("SignIn"))
+            {
+                Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show();
+            }
         }
 
     }
