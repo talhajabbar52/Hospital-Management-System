@@ -108,8 +108,9 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
         mDisplayDate.setOnClickListener(this);
         bookApp.setOnClickListener(this);
 
-        final RadioGroup[] gender = {(RadioGroup) v.findViewById(R.id.P_gender)};
+        final RadioGroup[] gender = {v.findViewById(R.id.P_gender)};
         gender[0].setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId){
@@ -237,16 +238,7 @@ public class AppointmentFragment extends Fragment implements View.OnClickListene
             });
 
 
-            myRef2.child("Appointment Check").child(String.valueOf(availableUser+1)).setValue(check_app).addOnCompleteListener(new OnCompleteListener<Void>()  {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()){
-
-                    }
-                    else    {
-                    }
-                }
-            });
         }
+        myRef2.child("Appointment Check").child(String.valueOf(availableUser+1)).setValue(check_app);
     }
 }

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/doctor"
@@ -50,7 +52,8 @@
             android:hint="@string/Email"
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:autofillHints="Email" />
 
         <EditText
             android:id="@+id/DocPhone"
@@ -58,9 +61,10 @@
             android:layout_width="370dp"
             android:layout_height="wrap_content"
             android:hint="@string/phone_number"
-            android:inputType="number"
+            android:inputType="phone"
             android:minHeight="48dp"
-            android:textColor="#040404" />
+            android:textColor="#040404"
+            android:autofillHints="Phone" />
 
         <EditText
             android:id="@+id/DocAge"
@@ -68,16 +72,16 @@
             android:layout_height="wrap_content"
             android:hint="@string/age"
             android:inputType="number"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:autofillHints="Age" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Gender: "
-            android:inputType="text"
-            android:textSize="19dp"
+            android:hint="@string/gender"
+            android:textSize="19sp"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:textColor="#000000"
             />
 
@@ -86,7 +90,7 @@
             android:layout_width="190dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="-35dp"
-            android:layout_marginLeft="100dp"
+            android:layout_marginStart="100dp"
             android:orientation="horizontal"
             android:weightSum="1">
 
@@ -96,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawableStart="@drawable/ic_male"
-                android:text="Male" />
+                android:text="@string/male" />
 
             <RadioButton
                 android:id="@+id/female"
@@ -104,51 +108,26 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_femlae"
                 android:layout_weight="1"
-                android:text="Female" />
+                android:text="@string/female" />
         </RadioGroup>
 
 
-       <!-- <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-        <RadioButton
-            android:id="@+id/male"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_male"
-            android:onClick="onRadioButtonClicked"
-            android:text="@string/male"
-            android:textColor="#FFFFFF" />
-
-        <RadioButton
-            android:id="@+id/female"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:drawableStart="@drawable/ic_femlae"
-            android:onClick="onRadioButtonClicked"
-            android:text="@string/female"
-            android:textColor="#FFFFFF" />
-
-        </LinearLayout>-->
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Specialist"
-            android:drawableStart="@drawable/ic_speciality"
-            android:inputType="text"
-            android:textSize="17dp"
+            android:text="@string/doctor_specialist"
+            android:textSize="17sp"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="2dp"
+            android:layout_marginStart="2dp"
             android:textColor="#000000"
-            />
+            app:drawableStartCompat="@drawable/ic_speciality"
+            tools:ignore="TextViewEdits" />
 
         <Spinner
-            android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -162,13 +141,13 @@
 
     <Button
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="130dp"
+        android:layout_marginStart="130dp"
         android:id="@+id/btnAddDco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
         android:backgroundTint="#BA3C55"
-        android:text="Add Doctor"
+        android:text="@string/add_doctor"
 
 
         />

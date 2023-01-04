@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class AppointmentCheckFragment extends Fragment {
 
-    private DatabaseReference reference;
+     DatabaseReference reference;
     private ListView listView;
 
     private ArrayList<String> arrayList;

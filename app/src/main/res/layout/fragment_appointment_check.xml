@@ -11,7 +11,7 @@
         android:background="#808080"
         android:textColor="@color/white"
         android:textAlignment="center"
-        android:text="Check Appointments"/>
+        android:text="@string/check_appointments"/>
 
     <ListView
         android:layout_width="match_parent"

@@ -8,7 +8,6 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.annotation.SuppressLint;
-import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -57,7 +56,7 @@ public class UserPanelActivity extends AppCompatActivity implements NavigationVi
         if (i.hasExtra("Logged In"))
         {
             Intent intents=getIntent();
-            String em = intent.getStringExtra("user");
+            String em = intents.getStringExtra("user");
 
             email.setText(em);
 
@@ -65,6 +64,7 @@ public class UserPanelActivity extends AppCompatActivity implements NavigationVi
 
         }
     }
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){

@@ -44,6 +44,9 @@
     <string name="doctor_specialist">Doctor Specialist</string>
     <string name="book_appointment">Book Appointment</string>
     <string name="dd_mm_yyy">DD MM YYY</string>
+    <string name="logo">Logo</string>
+    <string name="add_doctor">Add Doctor</string>
+    <string name="check_appointments">Check Appointments</string>
 
 
     <string-array name="Specialist">
