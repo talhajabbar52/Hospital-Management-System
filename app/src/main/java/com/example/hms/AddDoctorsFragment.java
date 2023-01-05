@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -25,6 +26,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 
 public class AddDoctorsFragment extends Fragment implements View.OnClickListener {
     EditText name, email, phone, age;
@@ -33,6 +37,10 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
     String uGender;
     Button btnSave;
     String DocSpecialist;
+    ArrayList<String> Days;
+    String[] Days2;
+    CheckBox monday,tuesday,wednesday,thursday,friday,saturday;
+
     private int availableUser = 0;
     DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
 
@@ -42,6 +50,14 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_add_doctors, container, false);
 
+        Days = new ArrayList<>();
+
+        monday = v.findViewById(R.id.day_monday);
+        tuesday = v.findViewById(R.id.day_tuesday);
+        wednesday = v.findViewById(R.id.day_wednesday);
+        thursday = v.findViewById(R.id.day_thursday);
+        friday = v.findViewById(R.id.day_friday);
+        saturday = v.findViewById(R.id.day_saturday);
         name = v.findViewById(R.id.txtDocName);
         email = v.findViewById(R.id.DocEmail);
         phone = v.findViewById(R.id.DocPhone);
@@ -50,6 +66,27 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
         female = v.findViewById(R.id.female);
         Specialist = v.findViewById(R.id.DocSpecialist);
         btnSave = v.findViewById(R.id.btnAddDco);
+
+        if (monday.isChecked()){
+            Days.add(monday.getText().toString());
+
+        }
+        if (tuesday.isChecked()){
+            Days.add(tuesday.getText().toString());
+        }
+        if (wednesday.isChecked()){
+            Days.add(wednesday.getText().toString());
+        }
+        if (thursday.isChecked()){
+            Days.add(thursday.getText().toString());
+        }
+        if (friday.isChecked()){
+            Days.add(friday.getText().toString());
+        }
+        if (saturday.isChecked()){
+            Days.add(saturday.getText().toString());
+        }
+
 
         RadioGroup gender= v.findViewById(R.id.docGen);
 
@@ -113,6 +150,7 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
 
     private void saveDetails() {
         String Name, Email, Gender, specialist, Age, Phone;
+
         Name = name.getText().toString().trim();
         Email = email.getText().toString().trim();
         Phone = phone.getText().toString().trim();
@@ -142,7 +180,7 @@ public class AddDoctorsFragment extends Fragment implements View.OnClickListener
 
         else {
 
-            AddDoctors addDoc = new AddDoctors(Name, Email, Phone, Age, Gender, specialist);
+            AddDoctors addDoc = new AddDoctors(Name, Email, Phone, Age, Gender, specialist,Days);
 
             myRef.child("Doctor Info").child(String.valueOf(availableUser+1)).setValue(addDoc).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override

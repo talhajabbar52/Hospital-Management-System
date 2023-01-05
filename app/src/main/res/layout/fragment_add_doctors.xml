@@ -85,6 +85,8 @@
             android:textColor="#000000"
             />
 
+
+
         <RadioGroup
             android:id="@+id/docGen"
             android:layout_width="190dp"
@@ -111,6 +113,69 @@
                 android:text="@string/female" />
         </RadioGroup>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Days"
+            android:inputType="text"
+            android:textSize="19dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="2dp"
+            android:textColor="#000000" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+
+            <CheckBox
+                android:id="@+id/day_monday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Monday"/>
+        <CheckBox
+            android:id="@+id/day_tuesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tuesday"/>
+
+            <CheckBox
+                android:id="@+id/day_wednesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wednesday"/>
+
+            <CheckBox
+                android:id="@+id/day_thursday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Thursday"/>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/day_friday"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Friday"/>
+
+            <CheckBox
+                android:id="@+id/day_saturday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Saturday"/>
+
+        </LinearLayout>
 
 <LinearLayout
     android:layout_width="match_parent"
