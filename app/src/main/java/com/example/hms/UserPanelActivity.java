@@ -38,7 +38,6 @@ public class UserPanelActivity extends AppCompatActivity implements NavigationVi
         email= header.findViewById(R.id.email);
         Intent intent=getIntent();
         String emails = intent.getStringExtra("user");
-
         email.setText(emails);
 
 

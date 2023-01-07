@@ -1,15 +1,14 @@
 package com.example.hms;
 
-import java.util.ArrayList;
 
 public class AddDoctors {
    public String name,email,gender,Specialist, age ,phone;
-   public ArrayList days;
+
 
     public AddDoctors(){
 
     }
-    public AddDoctors(String name,String email, String phone,String age,String gender,String Specialist, ArrayList day)
+    public AddDoctors(String name,String email, String phone,String age,String gender,String Specialist)
     {
 
         this.name=name;
@@ -18,11 +17,11 @@ public class AddDoctors {
         this.age=age;
         this.gender=gender;
         this.Specialist=Specialist;
-        this.days=day;
+
 
     }
 
     public String toString(){
-        return "\n Patient Name: " + this.name + "\n Patient Age: " + email + "\n Patient Gender: " + phone + "\n Doctor Name: " + age + "\n Speciality: " + gender + "\n Appointment Date: " + Specialist+ "\n Days: " + days;
+        return "\n Patient Name: " + this.name + "\n Patient Age: " + email + "\n Patient Gender: " + phone + "\n Doctor Name: " + age + "\n Speciality: " + gender + "\n Appointment Date: " + Specialist;
     }
 }

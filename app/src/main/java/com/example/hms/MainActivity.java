@@ -149,7 +149,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if (task.isSuccessful()) {
                         Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                         bar.setVisibility(View.GONE);
-                        startActivity(new Intent(MainActivity.this, AdminPanelActivity.class));
+                        Intent intent = new Intent(MainActivity.this, AdminPanelActivity.class);
+                        intent.putExtra("user", adminEmail);
+                        startActivity(intent);
                     } else {
                         Toast.makeText(MainActivity.this, "Login Unsuccessful" + task.getException(), Toast.LENGTH_SHORT).show();
                         bar.setVisibility(View.GONE);
